@@ -1,9 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
 html,
 body {
+  direction: rtl;
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Vazir', sans-serif;
+  font-weight: 900;
+  font-size: 1.3rem;
+  background-image: linear-gradient(
+    68.4deg,
+    rgba(248, 182, 204, 1) 0.5%,
+    rgba(192, 198, 230, 1) 49%,
+    rgba(225, 246, 240, 1) 99.8%
+  );
+  overflow: hidden;
 }
 
 a {
@@ -13,4 +23,39 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+section {
+  height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+article {
+  display: flex;
+  align-items: flex-end;
+  margin: 0.5rem;
+}
+
+input {
+  background-color: unset;
+  border-bottom-color: #e2fdfd;
+  border-bottom-width: thick;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  margin: 0.5rem;
+  outline: 0;
+  font-size: 1.5rem;
+  font-family: 'Vazir', sans-serif;
+  font-weight: 900;
+  color: #e2fdfd;
+  text-align: center;
+  max-width: 300px;
+}
+
+span {
+  margin-right: 7px;
 }
