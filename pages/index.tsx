@@ -1,71 +1,136 @@
+import arrayMove from 'array-move'
 import { useEffect, useState } from 'react'
-import Navbar from '../components/navbar'
-import { poems } from '../db/poems'
-import { Poem } from '../model/Poem'
-import { daysSince } from '../utils/countDay'
+import Confetti from 'react-confetti'
+import SortableList, { SortableItem } from 'react-easy-sort'
+import Navbar from '@/components/navbar'
+import { poems } from '@/db/poems'
+import { useIsBrowser } from '@/hooks/useIsBrowser'
+import { arrayEquals } from '@/utils/arrayEquals'
+import { daysSince } from '@/utils/countDay'
 
-export default function IndexPage({ todayBeyt }: { todayBeyt: Poem }) {
+const todayBeyt = poems[daysSince]
+const beytFirstPartWordsSplited: string[] = todayBeyt?.m1.split(' ')
+const beytFirstPartAnswers: string[] = beytFirstPartWordsSplited?.filter(
+  (w) => w.length === 5
+)
+const firstAnswerWord: number = 0
+const beytFirstPartAnswer: string = beytFirstPartAnswers?.[firstAnswerWord]
+const todayBeytSecondPart = todayBeyt.m2.split(' ').reverse()
+const initialStateRandomizedMessage = todayBeyt.m2
+  .split(' ')
+  .sort(() => Math.random() - 0.5)
+
+const answerHintPlaceholder = beytFirstPartAnswer
+  ?.split('')
+  .map((letter, i) => (i === 4 || i === 0 || i === 1 ? letter : '*'))
+  .join(' ')
+
+const IndexPage: () => boolean | JSX.Element = () => {
   const [userInputAnswer, userInputAnswerSet] = useState<string | undefined>('')
-  const [isCorrect, isCorrectSet] = useState<boolean>(false)
+  const [isBeytFirstPartAnswerCorrect, isBeytFirstPartAnswerCorrectSet] =
+    useState<boolean>(false)
+  const [isBeytSecondPartAnswerCorrect, isBeytSecondPartAnswerCorrectSet] =
+    useState<boolean>(false)
+  const [todayBeytRandomized, todayBeytRandomizedSet] = useState<string[]>(
+    initialStateRandomizedMessage
+  )
+  const [isGameFinished, isGameFinishedSet] = useState<boolean>(false)
 
-  const beytWordsSplited: string[] = todayBeyt?.m1.split(' ')
-  const beytAnswers: string[] = beytWordsSplited?.filter((w) => w.length === 5)
-  const firstWord: number = 0
-  const beytAnswer: string = beytAnswers?.[firstWord]
+  const { isBrowser } = useIsBrowser()
 
-  const answerHintPlaceholder = beytAnswer
-    ?.split('')
-    .map((letter, i) => (i === 4 || i === 0 || i === 1 ? letter : '*'))
-    .join(' ')
+  const onSortEnd = (oldIndex: number, newIndex: number) => {
+    todayBeytRandomizedSet((array) => arrayMove(array, oldIndex, newIndex))
+  }
 
   useEffect(() => {
-    if (beytAnswer === userInputAnswer) {
-      isCorrectSet(true)
+    isBeytFirstPartAnswerCorrectSet(false)
+    isBeytSecondPartAnswerCorrectSet(false)
+    isGameFinishedSet(false)
+
+    if (arrayEquals(todayBeytRandomized, todayBeytSecondPart)) {
+      isBeytSecondPartAnswerCorrectSet(true)
+    }
+
+    if (beytFirstPartAnswer === userInputAnswer) {
+      isBeytFirstPartAnswerCorrectSet(true)
       localStorage.setItem('answer', userInputAnswer)
     } else {
-      isCorrectSet(false)
+      isBeytFirstPartAnswerCorrectSet(false)
     }
-  }, [userInputAnswer, isCorrect, beytAnswer])
+
+    if (isBeytFirstPartAnswerCorrect && isBeytSecondPartAnswerCorrect) {
+      isGameFinishedSet(true)
+    }
+  }, [
+    userInputAnswer,
+    isBeytFirstPartAnswerCorrect,
+    isBeytSecondPartAnswerCorrect,
+    todayBeytRandomized,
+  ])
 
   return (
-    <>
-      <Navbar />
-      <section>
-        <article>
-          {beytWordsSplited?.map((word: string) =>
-            word === beytAnswer ? (
-              <input
-                key={`${word}${Math.random().toString()}`}
-                type='text'
-                disabled={isCorrect}
-                placeholder={answerHintPlaceholder}
-                autoFocus
-                value={userInputAnswer}
-                onChange={(e) => userInputAnswerSet(e.target.value)}
-              />
-            ) : (
-              <span key={`${word}${Math.random().toString()}`}>{word}</span>
-            )
-          )}
-        </article>
-        <article>
-          <span>{todayBeyt?.m2}</span>
-        </article>
-        <small>{todayBeyt?.poet}</small>
+    isBrowser && (
+      <>
+        <Navbar />
+        {isGameFinished && <Confetti />}
+        <section>
+          <article>
+            {beytFirstPartWordsSplited?.map((word: string) =>
+              word === beytFirstPartAnswer ? (
+                <input
+                  key={`${word}${Math.random().toString()}`}
+                  type='text'
+                  disabled={isBeytFirstPartAnswerCorrect}
+                  placeholder={answerHintPlaceholder}
+                  autoFocus
+                  value={userInputAnswer}
+                  onChange={(e) => userInputAnswerSet(e.target.value)}
+                />
+              ) : (
+                <span key={`${word}${Math.random().toString()}`}>{word}</span>
+              )
+            )}
+          </article>
+          <article>
+            <SortableList
+              lockAxis='x'
+              style={{ display: 'flex', direction: 'ltr' }}
+              onSortEnd={onSortEnd}
+              className='list'
+              draggedItemClassName='dragged'
+            >
+              {todayBeytRandomized.map((word) => (
+                <SortableItem key={`${word}${Math.random().toString()}`}>
+                  <span
+                    style={{
+                      border: '2px solid white',
+                      backgroundColor: isBeytSecondPartAnswerCorrect
+                        ? 'lightgreen'
+                        : '#d7e7ed',
+                      borderRadius: '22px',
+                      padding: '7px',
+                      width: 'min-content',
+                    }}
+                  >
+                    {word}
+                  </span>
+                </SortableItem>
+              ))}
+            </SortableList>
+          </article>
+          <small>{todayBeyt?.poet}</small>
 
-        <style jsx>{`
-          input {
-            border-bottom-color: ${isCorrect ? 'lightgreen' : ''};
-          }
-        `}</style>
-      </section>
-    </>
+          <style jsx>{`
+            input {
+              border-bottom-color: ${isBeytFirstPartAnswerCorrect
+                ? 'lightgreen'
+                : ''};
+            }
+          `}</style>
+        </section>
+      </>
+    )
   )
 }
 
-export async function getServerSideProps() {
-  const todayBeyt: Poem = poems[Math.floor(Math.random() * poems.length)]
-  return {
-    props: { todayBeyt },
-  }
-}
+export default IndexPage

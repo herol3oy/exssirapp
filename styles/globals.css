@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
 html,
 body {
   direction: rtl;
@@ -58,4 +57,11 @@ input {
 
 span {
   margin-right: 7px;
+  color: #582350;
+  cursor: grab;
+}
+
+small {
+  font-size: 0.8rem;
+  margin-top: 2rem;
 }
