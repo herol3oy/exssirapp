@@ -13,7 +13,7 @@ const Navbar: () => JSX.Element = () => {
   const SwitchIcon = useColorModeValue(FaMoon, FaSun)
 
   return (
-    <Flex justifyContent='space-evenly' maxH='70px' borderBottomWidth='thin'>
+    <Flex justifyContent='space-between' maxH='70px' borderBottomWidth='thin'>
       <IconButton
         size='md'
         fontSize='lg'
