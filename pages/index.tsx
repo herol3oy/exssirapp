@@ -1,29 +1,18 @@
+import Navbar from '@/components/navbar'
+import { useIsBrowser } from '@/hooks/useIsBrowser'
+import { arrayEquals } from '@/utils/arrayEquals'
+import {
+  answerHintPlaceholder,
+  beytFirstPartAnswer,
+  beytFirstPartWords,
+  beytSecondPartWords,
+  beytSecondPartWordsShuffled,
+  todayBeyt,
+} from '@/utils/createPoemVariables'
 import arrayMove from 'array-move'
 import { useEffect, useState } from 'react'
 import Confetti from 'react-confetti'
 import SortableList, { SortableItem } from 'react-easy-sort'
-import Navbar from '@/components/navbar'
-import { poems } from '@/db/poems'
-import { useIsBrowser } from '@/hooks/useIsBrowser'
-import { arrayEquals } from '@/utils/arrayEquals'
-import { daysSince } from '@/utils/countDay'
-
-const todayBeyt = poems[daysSince]
-const beytFirstPartWordsSplited: string[] = todayBeyt?.m1.split(' ')
-const beytFirstPartAnswers: string[] = beytFirstPartWordsSplited?.filter(
-  (w) => w.length === 5
-)
-const firstAnswerWord: number = 0
-const beytFirstPartAnswer: string = beytFirstPartAnswers?.[firstAnswerWord]
-const todayBeytSecondPart = todayBeyt.m2.split(' ').reverse()
-const initialStateRandomizedMessage = todayBeyt.m2
-  .split(' ')
-  .sort(() => Math.random() - 0.5)
-
-const answerHintPlaceholder = beytFirstPartAnswer
-  ?.split('')
-  .map((letter, i) => (i === 4 || i === 0 || i === 1 ? letter : '*'))
-  .join(' ')
 
 const IndexPage: () => boolean | JSX.Element = () => {
   const [userInputAnswer, userInputAnswerSet] = useState<string | undefined>('')
@@ -32,22 +21,18 @@ const IndexPage: () => boolean | JSX.Element = () => {
   const [isBeytSecondPartAnswerCorrect, isBeytSecondPartAnswerCorrectSet] =
     useState<boolean>(false)
   const [todayBeytRandomized, todayBeytRandomizedSet] = useState<string[]>(
-    initialStateRandomizedMessage
+    beytSecondPartWordsShuffled
   )
   const [isGameFinished, isGameFinishedSet] = useState<boolean>(false)
 
   const { isBrowser } = useIsBrowser()
-
-  const onSortEnd = (oldIndex: number, newIndex: number) => {
-    todayBeytRandomizedSet((array) => arrayMove(array, oldIndex, newIndex))
-  }
 
   useEffect(() => {
     isBeytFirstPartAnswerCorrectSet(false)
     isBeytSecondPartAnswerCorrectSet(false)
     isGameFinishedSet(false)
 
-    if (arrayEquals(todayBeytRandomized, todayBeytSecondPart)) {
+    if (arrayEquals(todayBeytRandomized, beytSecondPartWords)) {
       isBeytSecondPartAnswerCorrectSet(true)
     }
 
@@ -68,6 +53,10 @@ const IndexPage: () => boolean | JSX.Element = () => {
     todayBeytRandomized,
   ])
 
+  const onSortEnd = (oldIndex: number, newIndex: number) => {
+    todayBeytRandomizedSet((array) => arrayMove(array, oldIndex, newIndex))
+  }
+
   return (
     isBrowser && (
       <>
@@ -75,7 +64,7 @@ const IndexPage: () => boolean | JSX.Element = () => {
         {isGameFinished && <Confetti />}
         <section>
           <article>
-            {beytFirstPartWordsSplited?.map((word: string) =>
+            {beytFirstPartWords?.map((word: string) =>
               word === beytFirstPartAnswer ? (
                 <input
                   key={`${word}${Math.random().toString()}`}
