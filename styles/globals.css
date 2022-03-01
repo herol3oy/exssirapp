@@ -1,29 +1,3 @@
-html,
-body {
-  direction: rtl;
-  padding: 0;
-  margin: 0;
-  font-family: 'Vazir', sans-serif;
-  font-weight: 900;
-  font-size: 1.3rem;
-  background-image: linear-gradient(
-    68.4deg,
-    rgba(248, 182, 204, 1) 0.5%,
-    rgba(192, 198, 230, 1) 49%,
-    rgba(225, 246, 240, 1) 99.8%
-  );
-  overflow: hidden;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
 section {
   height: calc(100vh - 70px);
   display: flex;
