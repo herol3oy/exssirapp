@@ -12,10 +12,12 @@ import {
 import {
   Container,
   Flex,
+  TagLabel,
   Text,
   Input,
   InputGroup,
   InputRightElement,
+  Tag,
 } from '@chakra-ui/react'
 import arrayMove from 'array-move'
 import { useEffect, useState } from 'react'
@@ -124,21 +126,19 @@ const IndexPage: () => boolean | JSX.Element = () => {
             >
               {todayBeytRandomized.map((word) => (
                 <SortableItem key={`${word}${Math.random().toString()}`}>
-                  <Text
-                    cursor='grab'
-                    color='white'
-                    border='solid 2px'
-                    borderColor='green.200'
-                    borderRadius='22px'
-                    p={2}
-                    maxW='max-content'
+                  <Tag
+                    size='xl'
+                    borderRadius='full'
+                    variant='solid'
+                    p={3}
                     mr={1}
-                    backgroundColor={
-                      isBeytSecondPartAnswerCorrect ? 'green.300' : '#d7e7ed'
+                    colorScheme={
+                      isBeytSecondPartAnswerCorrect ? 'green' : 'gray'
                     }
+                    cursor='grab'
                   >
-                    {word}
-                  </Text>
+                    <TagLabel>{word}</TagLabel>
+                  </Tag>
                 </SortableItem>
               ))}
             </SortableList>
