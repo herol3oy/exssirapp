@@ -4,14 +4,18 @@ import {
   IconButton,
   useColorMode,
   useColorModeValue,
+  useDisclosure,
 } from '@chakra-ui/react'
+import { Children } from 'react'
 import { FaMoon, FaQuestionCircle, FaSun } from 'react-icons/fa'
+import HowToPlayModal from './howToPlayModal'
 
 const Navbar: () => JSX.Element = () => {
   const { colorMode, toggleColorMode } = useColorMode()
   const text = useColorModeValue('dark', 'light')
   const SwitchIcon = useColorModeValue(FaMoon, FaSun)
 
+  const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <Flex justifyContent='space-between' maxH='70px' borderBottomWidth='thin'>
       <IconButton
@@ -28,6 +32,7 @@ const Navbar: () => JSX.Element = () => {
         اکسیر
       </Heading>
       <IconButton
+        onClick={onOpen}
         size='md'
         fontSize='lg'
         aria-label='راهنما'
@@ -36,6 +41,9 @@ const Navbar: () => JSX.Element = () => {
         ml={[0, 3]}
         icon={<FaQuestionCircle />}
       />
+      <HowToPlayModal isOpen={isOpen} onClose={onClose}>
+        {Children}
+      </HowToPlayModal>
     </Flex>
   )
 }
