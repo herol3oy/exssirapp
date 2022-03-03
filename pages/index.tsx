@@ -119,6 +119,7 @@ const IndexPage: () => boolean | JSX.Element = () => {
           <Flex m={6}>
             <SortableList
               lockAxis='x'
+              allowDrag={isBeytSecondPartAnswerCorrect ? false : true}
               style={{ display: 'flex', direction: 'ltr' }}
               onSortEnd={onSortEnd}
               className='list'
