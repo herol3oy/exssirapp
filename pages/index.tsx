@@ -72,7 +72,7 @@ const IndexPage: () => boolean | JSX.Element = () => {
     isBrowser && (
       <Container maxW='full'>
         <Navbar />
-        {isGameFinished && <Confetti />}
+        {isGameFinished && <Confetti recycle={false} />}
         <Flex
           flexDir='column'
           alignItems='center'
