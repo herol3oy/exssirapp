@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^1.8.6",
+    "@emotion/cache": "^11.7.1",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "framer-motion": "^6",
@@ -19,7 +20,9 @@
     "react-confetti": "^6.0.1",
     "react-dom": "17.0.2",
     "react-easy-sort": "^1.4.1",
-    "react-icons": "^4.3.1"
+    "react-icons": "^4.3.1",
+    "stylis": "^4.0.13",
+    "stylis-plugin-rtl": "^2.1.1"
   },
   "devDependencies": {
     "@types/node": "17.0.21",
