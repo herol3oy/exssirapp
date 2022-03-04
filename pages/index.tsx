@@ -1,28 +1,17 @@
+import PoemFirstPart from '@/components/poemFirstPart'
 import { useIsBrowser } from '@/hooks/useIsBrowser'
 import { arrayEquals } from '@/utils/arrayEquals'
 import {
-  answerHintPlaceholder,
   beytFirstPartAnswer,
-  beytFirstPartWords,
   beytSecondPartWords,
   beytSecondPartWordsShuffled,
   todayBeyt,
 } from '@/utils/createPoemVariables'
-import {
-  Container,
-  Flex,
-  TagLabel,
-  Text,
-  Input,
-  InputGroup,
-  InputRightElement,
-  Tag,
-} from '@chakra-ui/react'
+import { Container, Flex, Tag, TagLabel, Text } from '@chakra-ui/react'
 import arrayMove from 'array-move'
 import { useEffect, useState } from 'react'
 import Confetti from 'react-confetti'
 import SortableList, { SortableItem } from 'react-easy-sort'
-import { FaCheck } from 'react-icons/fa'
 
 const IndexPage: () => boolean | JSX.Element = () => {
   const [userInputAnswer, userInputAnswerSet] = useState<string | undefined>('')
@@ -78,42 +67,11 @@ const IndexPage: () => boolean | JSX.Element = () => {
           h='calc(100vh - 70px)'
           w='100%'
         >
-          <Flex alignItems='flex-end'>
-            {beytFirstPartWords?.map((word: string) =>
-              word === beytFirstPartAnswer ? (
-                <InputGroup key={`${word}${Math.random().toString()}`}>
-                  <Input
-                    borderBottomColor={
-                      isBeytFirstPartAnswerCorrect ? 'green' : ''
-                    }
-                    textAlign='center'
-                    fontWeight={900}
-                    variant='flushed'
-                    disabled={isBeytFirstPartAnswerCorrect}
-                    placeholder={answerHintPlaceholder}
-                    autoFocus
-                    color={isBeytFirstPartAnswerCorrect ? 'green' : 'gray'}
-                    value={userInputAnswer}
-                    onChange={(e) => userInputAnswerSet(e.target.value)}
-                  />
-                  <InputRightElement>
-                    <FaCheck
-                      color={isBeytFirstPartAnswerCorrect ? 'green' : ''}
-                    />
-                  </InputRightElement>
-                </InputGroup>
-              ) : (
-                <Text
-                  mr={2}
-                  color='GrayText'
-                  cursor='grab'
-                  key={`${word}${Math.random().toString()}`}
-                >
-                  {word}
-                </Text>
-              )
-            )}
-          </Flex>
+          <PoemFirstPart
+            isBeytFirstPartAnswerCorrect={isBeytFirstPartAnswerCorrect}
+            userInputAnswer={userInputAnswer}
+            userInputAnswerSet={userInputAnswerSet}
+          />
           <Flex m={6}>
             <SortableList
               lockAxis='x'
