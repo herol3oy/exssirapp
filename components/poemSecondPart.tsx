@@ -16,6 +16,7 @@ const PoemSecondPart = ({
       <SortableList
         lockAxis='x'
         allowDrag={isBeytSecondPartAnswerCorrect ? false : true}
+        style={{ display: 'flex' }}
         onSortEnd={onSortEnd}
       >
         {todayBeytRandomized.map((word: string) => (
