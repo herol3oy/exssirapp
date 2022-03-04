@@ -14,7 +14,7 @@ const answerHintPlaceholder = beytFirstPartAnswer
   .map((letter, i) => (i === 4 || i === 0 || i === 1 ? letter : '*'))
   .join(' ')
 
-const beytSecondPartWords = todayBeyt.m2.split(' ').reverse()
+const beytSecondPartWords = todayBeyt.m2.split(' ')
 const beytSecondPartWordsShuffled = todayBeyt.m2
   .split(' ')
   .sort(() => Math.random() - 0.5)
