@@ -16,7 +16,10 @@ const PoemSecondPart = ({
       <SortableList
         lockAxis='x'
         allowDrag={isBeytSecondPartAnswerCorrect ? false : true}
+        style={{ display: 'flex' }}
         onSortEnd={onSortEnd}
+        className='list'
+        draggedItemClassName='dragged'
       >
         {todayBeytRandomized.map((word: string) => (
           <SortableItem key={`${word}${Math.random().toString()}`}>
