@@ -1,4 +1,3 @@
-import Navbar from '@/components/navbar'
 import { useIsBrowser } from '@/hooks/useIsBrowser'
 import { arrayEquals } from '@/utils/arrayEquals'
 import {
@@ -71,7 +70,6 @@ const IndexPage: () => boolean | JSX.Element = () => {
   return (
     isBrowser && (
       <Container maxW='full'>
-        <Navbar />
         {isGameFinished && <Confetti recycle={false} />}
         <Flex
           flexDir='column'
