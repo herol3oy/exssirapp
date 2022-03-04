@@ -1,4 +1,5 @@
 import PoemFirstPart from '@/components/poemFirstPart'
+import PoemSecondPart from '@/components/poemSecondPart'
 import { useIsBrowser } from '@/hooks/useIsBrowser'
 import { arrayEquals } from '@/utils/arrayEquals'
 import {
@@ -7,11 +8,10 @@ import {
   beytSecondPartWordsShuffled,
   todayBeyt,
 } from '@/utils/createPoemVariables'
-import { Container, Flex, Tag, TagLabel, Text } from '@chakra-ui/react'
+import { Container, Flex, Text } from '@chakra-ui/react'
 import arrayMove from 'array-move'
 import { useEffect, useState } from 'react'
 import Confetti from 'react-confetti'
-import SortableList, { SortableItem } from 'react-easy-sort'
 
 const IndexPage: () => boolean | JSX.Element = () => {
   const [userInputAnswer, userInputAnswerSet] = useState<string | undefined>('')
@@ -52,10 +52,6 @@ const IndexPage: () => boolean | JSX.Element = () => {
     todayBeytRandomized,
   ])
 
-  const onSortEnd = (oldIndex: number, newIndex: number) => {
-    todayBeytRandomizedSet((array) => arrayMove(array, oldIndex, newIndex))
-  }
-
   return (
     isBrowser && (
       <Container maxW='full'>
@@ -72,34 +68,11 @@ const IndexPage: () => boolean | JSX.Element = () => {
             userInputAnswer={userInputAnswer}
             userInputAnswerSet={userInputAnswerSet}
           />
-          <Flex m={6}>
-            <SortableList
-              lockAxis='x'
-              allowDrag={isBeytSecondPartAnswerCorrect ? false : true}
-              style={{ display: 'flex', direction: 'ltr' }}
-              onSortEnd={onSortEnd}
-              className='list'
-              draggedItemClassName='dragged'
-            >
-              {todayBeytRandomized.map((word) => (
-                <SortableItem key={`${word}${Math.random().toString()}`}>
-                  <Tag
-                    size='xl'
-                    borderRadius='full'
-                    variant='solid'
-                    p={3}
-                    mr={1}
-                    colorScheme={
-                      isBeytSecondPartAnswerCorrect ? 'green' : 'gray'
-                    }
-                    cursor='grab'
-                  >
-                    <TagLabel>{word}</TagLabel>
-                  </Tag>
-                </SortableItem>
-              ))}
-            </SortableList>
-          </Flex>
+          <PoemSecondPart
+            todayBeytRandomizedSet={todayBeytRandomizedSet}
+            isBeytSecondPartAnswerCorrect={isBeytSecondPartAnswerCorrect}
+            todayBeytRandomized={todayBeytRandomized}
+          />
           <Text fontSize={16} mt='8'>
             {todayBeyt?.poet}
           </Text>
