@@ -30,7 +30,6 @@ const PoemFirstPart = ({
               variant='flushed'
               disabled={isBeytFirstPartAnswerCorrect}
               placeholder={answerHintPlaceholder}
-              autoFocus
               color={isBeytFirstPartAnswerCorrect ? 'green' : 'gray'}
               value={userInputAnswer}
               onChange={(e) => userInputAnswerSet(e.target.value)}
