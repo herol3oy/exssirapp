@@ -22,7 +22,7 @@ const PoemFirstPart = ({
     <Flex alignItems='flex-end'>
       {beytFirstPartWords?.map((word: string) =>
         word === beytFirstPartAnswer ? (
-          <InputGroup key={`${word}${Math.random().toString()}`}>
+          <InputGroup key={word}>
             <Input
               borderBottomColor={isBeytFirstPartAnswerCorrect ? 'green' : ''}
               textAlign='center'
@@ -39,12 +39,7 @@ const PoemFirstPart = ({
             </InputRightElement>
           </InputGroup>
         ) : (
-          <Text
-            mr={2}
-            color='GrayText'
-            cursor='grab'
-            key={`${word}${Math.random().toString()}`}
-          >
+          <Text mr={2} color='GrayText' cursor='grab' key={word}>
             {word}
           </Text>
         )
