@@ -17,10 +17,14 @@ const Navbar: () => JSX.Element = () => {
   const { isOpen, onOpen, onClose } = useDisclosure({ defaultIsOpen: true })
 
   return (
-    <Flex justifyContent='space-between' maxH='70px' borderBottomWidth='thin'>
+    <Flex
+      alignItems='center'
+      justifyContent='space-between'
+      maxH='70px'
+      borderBottomWidth='thin'
+    >
       <IconButton
-        size='md'
-        fontSize='lg'
+        fontSize='2xl'
         aria-label={`Switch to ${text} mode`}
         variant='ghost'
         color='GrayText'
@@ -28,13 +32,18 @@ const Navbar: () => JSX.Element = () => {
         onClick={toggleColorMode}
         icon={<SwitchIcon />}
       />
-      <Heading color='green.300' fontFamily="'Lalezar', cursive">
+      <Heading
+        pb={2}
+        pt={2}
+        size='2xl'
+        color='green.300'
+        fontFamily="'Lalezar', cursive"
+      >
         اکسیر
       </Heading>
       <IconButton
         onClick={onOpen}
-        size='md'
-        fontSize='lg'
+        fontSize='2xl'
         aria-label='راهنما'
         variant='ghost'
         color='GrayText'
