@@ -9,7 +9,6 @@ import {
   todayBeyt,
 } from '@/utils/createPoemVariables'
 import { Container, Flex, Text } from '@chakra-ui/react'
-import arrayMove from 'array-move'
 import { useEffect, useState } from 'react'
 import Confetti from 'react-confetti'
 
@@ -23,10 +22,12 @@ const IndexPage: () => boolean | JSX.Element = () => {
     beytSecondPartWordsShuffled
   )
   const [isGameFinished, isGameFinishedSet] = useState<boolean>(false)
+  const [windowWidth, windowWidthSet] = useState<number>(0)
 
   const { isBrowser } = useIsBrowser()
 
   useEffect(() => {
+    windowWidthSet(window.innerWidth)
     isBeytFirstPartAnswerCorrectSet(false)
     isBeytSecondPartAnswerCorrectSet(false)
     isGameFinishedSet(false)
@@ -55,13 +56,14 @@ const IndexPage: () => boolean | JSX.Element = () => {
   return (
     isBrowser && (
       <Container maxW='full'>
-        {isGameFinished && <Confetti recycle={false} />}
+        {isGameFinished && <Confetti recycle={false} width={windowWidth} />}
         <Flex
           flexDir='column'
           alignItems='center'
           justifyContent='center'
           h='calc(100vh - 70px)'
-          w='100%'
+          fontSize={['1.2rem', '2rem', '2.2rem', '2.5rem']}
+          fontWeight={900}
         >
           <PoemFirstPart
             isBeytFirstPartAnswerCorrect={isBeytFirstPartAnswerCorrect}
@@ -73,7 +75,7 @@ const IndexPage: () => boolean | JSX.Element = () => {
             isBeytSecondPartAnswerCorrect={isBeytSecondPartAnswerCorrect}
             todayBeytRandomized={todayBeytRandomized}
           />
-          <Text fontSize={16} mt='8'>
+          <Text color='GrayText' fontSize={16} mt='8'>
             {todayBeyt?.poet}
           </Text>
         </Flex>

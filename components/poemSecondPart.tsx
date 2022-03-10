@@ -26,7 +26,7 @@ const PoemSecondPart = ({
               borderRadius='full'
               variant='solid'
               p={3}
-              mr={1}
+              mr={2}
               colorScheme={isBeytSecondPartAnswerCorrect ? 'green' : 'gray'}
               cursor='grab'
             >
