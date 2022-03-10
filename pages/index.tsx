@@ -23,11 +23,13 @@ const IndexPage: () => boolean | JSX.Element = () => {
   )
   const [isGameFinished, isGameFinishedSet] = useState<boolean>(false)
   const [windowWidth, windowWidthSet] = useState<number>(0)
+  const [windowHeight, windowHeightSet] = useState<number>(0)
 
   const { isBrowser } = useIsBrowser()
 
   useEffect(() => {
     windowWidthSet(window.innerWidth)
+    windowHeightSet(window.innerHeight)
     isBeytFirstPartAnswerCorrectSet(false)
     isBeytSecondPartAnswerCorrectSet(false)
     isGameFinishedSet(false)
@@ -56,7 +58,9 @@ const IndexPage: () => boolean | JSX.Element = () => {
   return (
     isBrowser && (
       <Container maxW='full'>
-        {isGameFinished && <Confetti recycle={false} width={windowWidth} />}
+        {isGameFinished && (
+          <Confetti recycle={false} height={windowHeight} width={windowWidth} />
+        )}
         <Flex
           flexDir='column'
           alignItems='center'
