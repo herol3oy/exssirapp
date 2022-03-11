@@ -27,7 +27,7 @@ const PoemSecondPart = ({
               variant='solid'
               p={3}
               mr={2}
-              colorScheme={isBeytSecondPartAnswerCorrect ? 'green' : 'gray'}
+              bg={isBeytSecondPartAnswerCorrect ? 'green.300' : 'gray'}
               cursor='grab'
             >
               <TagLabel>{word}</TagLabel>
