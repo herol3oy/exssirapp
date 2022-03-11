@@ -11,6 +11,9 @@ const customTheme: ThemeConfig = extendTheme({
         fontSize: '1.3rem',
         fontWeight: 900,
       },
+      span: {
+        fontWeight: 900,
+      },
     }),
   },
 })
