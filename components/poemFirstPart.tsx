@@ -28,7 +28,7 @@ const PoemFirstPart = ({
             onChange={(e) => userInputAnswerSet(e.target.value)}
           />
         ) : (
-          <Text mr={2} color='GrayText' cursor='grab' key={word}>
+          <Text mr={2} color='GrayText' key={word}>
             {word}
           </Text>
         )
