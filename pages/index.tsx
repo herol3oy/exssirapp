@@ -67,7 +67,6 @@ const IndexPage: () => boolean | JSX.Element = () => {
           justifyContent='center'
           h='calc(100vh - 70px)'
           fontSize={['1.2rem', '2rem', '2.2rem', '2.5rem']}
-          fontWeight={900}
         >
           <PoemFirstPart
             isBeytFirstPartAnswerCorrect={isBeytFirstPartAnswerCorrect}
