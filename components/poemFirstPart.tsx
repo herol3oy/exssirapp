@@ -17,15 +17,19 @@ const PoemFirstPart = ({
         word === beytFirstPartAnswer ? (
           <Input
             key={word}
-            borderBottomColor={isBeytFirstPartAnswerCorrect ? 'green' : ''}
+            borderBottomColor={isBeytFirstPartAnswerCorrect ? 'green.300' : ''}
             textAlign='center'
             fontWeight={900}
             variant='flushed'
             disabled={isBeytFirstPartAnswerCorrect}
             placeholder={answerHintPlaceholder}
-            color={isBeytFirstPartAnswerCorrect ? 'green' : 'gray'}
+            color={isBeytFirstPartAnswerCorrect ? 'green.300' : 'gray'}
             value={userInputAnswer}
             onChange={(e) => userInputAnswerSet(e.target.value)}
+            fontSize={['1.2rem', '2rem', '2.2rem', '2.5rem']}
+            maxW='300px'
+            mr={2}
+            p={6}
           />
         ) : (
           <Text mr={2} color='GrayText' key={word}>
