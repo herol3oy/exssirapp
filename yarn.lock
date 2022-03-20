@@ -2638,6 +2638,11 @@ react-remove-scroll@2.4.1:
     use-callback-ref "^1.2.3"
     use-sidecar "^1.0.1"
 
+react-simple-keyboard@^3.4.83:
+  version "3.4.83"
+  resolved "https://registry.yarnpkg.com/react-simple-keyboard/-/react-simple-keyboard-3.4.83.tgz#653dad7075d0b4ffd4af2673be39fe5effb9f1bb"
+  integrity sha512-UGlJoCPCYokGYcHUmJbd7wIJEr9IwYPGxwGbsyoc+X8BIQEO5Ny+dLODOsAnsRDo25267yiNRwtZWThzPQa9Yg==
+
 react-style-singleton@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/react-style-singleton/-/react-style-singleton-2.1.1.tgz#ce7f90b67618be2b6b94902a30aaea152ce52e66"

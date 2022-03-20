@@ -14,7 +14,7 @@ const Navbar: () => JSX.Element = () => {
   const { colorMode, toggleColorMode } = useColorMode()
   const text = useColorModeValue('dark', 'light')
   const SwitchIcon = useColorModeValue(FaMoon, FaSun)
-  const { isOpen, onOpen, onClose } = useDisclosure({ defaultIsOpen: true })
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <Flex
