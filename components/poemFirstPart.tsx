@@ -5,6 +5,8 @@ import {
 } from '@/utils/createPoemVariables'
 import { Flex, Input, Text } from '@chakra-ui/react'
 import { PoemFirstPartType } from 'model/poem-first-part'
+import { ChangeEvent } from 'react'
+import 'react-simple-keyboard/build/css/index.css'
 
 const PoemFirstPart = ({
   isBeytFirstPartAnswerCorrect,
@@ -25,11 +27,14 @@ const PoemFirstPart = ({
             placeholder={answerHintPlaceholder}
             color={isBeytFirstPartAnswerCorrect ? 'green.300' : 'gray'}
             value={userInputAnswer}
-            onChange={(e) => userInputAnswerSet(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>): void =>
+              userInputAnswerSet(e.target.value)
+            }
             fontSize={['1.2rem', '2rem', '2.2rem', '2.5rem']}
             maxW='300px'
             mr={2}
             p={6}
+            maxLength={5}
           />
         ) : (
           <Text mr={2} color='GrayText' key={word}>
