@@ -23,7 +23,7 @@ const PoemFirstPart = ({
             textAlign='center'
             fontWeight={900}
             variant='flushed'
-            disabled={isBeytFirstPartAnswerCorrect}
+            disabled
             placeholder={answerHintPlaceholder}
             color={isBeytFirstPartAnswerCorrect ? 'green.300' : 'gray'}
             value={userInputAnswer}
