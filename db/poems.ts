@@ -146,12 +146,6 @@ export const poems: Poem[] = [
     url: 'https://ganjoor.net/saadi/divan/ghazals/sh297/',
   },
   {
-    m1: 'رخ‌ها بنگر تو زعفرانی',
-    m2: 'کز درد همی‌دهد نشانی',
-    poet: 'مولوی',
-    url: 'https://ganjoor.net/moulavi/shams/ghazalsh/sh2770/',
-  },
-  {
     m1: 'گر ز غلامیش نشانت دهند',
     m2: 'سلطنت کون و مکانت دهند',
     poet: 'فروغی بسطامی',
