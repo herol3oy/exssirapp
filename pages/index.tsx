@@ -1,5 +1,6 @@
 import PoemFirstPart from '@/components/poemFirstPart'
 import PoemSecondPart from '@/components/poemSecondPart'
+import WonGameModal from '@/components/wonGameModal'
 import { useIsBrowser } from '@/hooks/useIsBrowser'
 import { arrayEquals } from '@/utils/arrayEquals'
 import {
@@ -9,7 +10,7 @@ import {
   todayBeyt,
 } from '@/utils/createPoemVariables'
 import { Container, Flex, Text } from '@chakra-ui/react'
-import { useEffect, useRef, useState } from 'react'
+import { Children, useEffect, useRef, useState } from 'react'
 import Confetti from 'react-confetti'
 import Keyboard from 'react-simple-keyboard'
 
@@ -114,6 +115,12 @@ const IndexPage: () => boolean | JSX.Element = () => {
             />
           </Container>
         </Flex>
+        <WonGameModal
+          isGameFinished={isGameFinished}
+          isGameFinishedSet={isGameFinishedSet}
+        >
+          {Children}
+        </WonGameModal>
       </Container>
     )
   )
