@@ -42,10 +42,10 @@ const WonGameModal = ({
 }): JSX.Element => {
   const { hasCopied, onCopy } = useClipboard(
     `اکسیر | بیت روز ${daysSinceInPersianLetter} ام \n
-        «${firstBeytToShare}»
-        «${secondBeytToShare}»\n
-        ${todayBeyt.poet}\n
-        https://exesapp.vercel.app`
+    «${firstBeytToShare}»
+    «${secondBeytToShare}»\n
+    ${todayBeyt.poet}\n
+    https://exss.ir`
   )
   return (
     <Modal
