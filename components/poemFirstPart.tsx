@@ -31,7 +31,7 @@ const PoemFirstPart = ({
               userInputAnswerSet(e.target.value)
             }
             fontSize={['1.2rem', '2rem', '2.2rem', '2.5rem']}
-            maxW='300px'
+            maxW='250px'
             mr={2}
             p={6}
             maxLength={5}
