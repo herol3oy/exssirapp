@@ -44,9 +44,13 @@ const PoemFirstPart = ({
               position='absolute'
               top={0}
               right='15px'
-              transition='opacity 0.3s ease'
+              transition='opacity 0.2s ease-in-out'
               fontSize='xs'
               opacity={userInputAnswer ? 1 : 0}
+              border='solid 1px orange'
+              borderRadius='15px'
+              p='1'
+              bg='orange'
             >
               {answerHintPlaceholder}
             </FormLabel>
