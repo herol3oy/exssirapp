@@ -29,3 +29,7 @@ yarn-error.log*
 .vercel
 
 *.tsbuildinfo
+
+sw.js
+sw.js.map
+workbox-*
