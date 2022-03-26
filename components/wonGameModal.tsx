@@ -47,6 +47,7 @@ const WonGameModal = ({
     ${todayBeyt.poet}\n
     https://exss.ir`
   )
+
   return (
     <Modal
       onClose={() => {}}
@@ -56,25 +57,24 @@ const WonGameModal = ({
       isCentered
       size='md'
     >
-      <ModalOverlay
-        bg='whiteAlpha.300'
-        backdropFilter='blur(6px) hue-rotate(90deg)'
-      />
-      <ModalContent bg='green.300'>
-        <ModalHeader textAlign='center'>آفرین</ModalHeader>
+      <ModalOverlay bg='whiteAlpha.100' backdropFilter='blur(3px)' />
+      <ModalContent mx='2' bg='green.300'>
+        <ModalHeader textAlign='center'>🎉 آفرین 🎉</ModalHeader>
         <ModalCloseButton onClick={() => isGameFinishedSet(false)} />
         <ModalBody textAlign='center'>
-          <Heading size='lg' fontFamily="'Vazir', sans-serif;">
+          <Heading size='lg' fontFamily="'Vazir', sans-serif;" mb='4'>
             {todayBeyt.m1}
           </Heading>
           <Heading size='lg' fontFamily="'Vazir', sans-serif;">
             {todayBeyt.m2}
           </Heading>
-          <Text>{todayBeyt.poet}</Text>
+          <Text color='green.700' fontSize='18' mt='4'>
+            {todayBeyt.poet}
+          </Text>
         </ModalBody>
         <ModalFooter justifyContent='space-between'>
           <Button onClick={onCopy} colorScheme='twitter' variant='solid'>
-            {hasCopied ? 'کپی‌شد!' : 'به اشتراک بذارید'}
+            {hasCopied ? 'کپی‌شد' : 'به اشتراک بذارید'}
           </Button>
           <Button colorScheme='yellow' variant='solid'>
             <Link href={todayBeyt.url} passHref>
