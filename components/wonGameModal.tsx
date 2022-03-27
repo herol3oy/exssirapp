@@ -45,7 +45,7 @@ const WonGameModal = ({
     «${firstBeytToShare}»
     «${secondBeytToShare}»\n
     ${todayBeyt.poet}\n
-    https://exss.ir`
+    https://exss.ir/`
   )
 
   return (
