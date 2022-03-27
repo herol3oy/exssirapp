@@ -46,10 +46,11 @@ const PoemFirstPart = ({
               right='15px'
               transition='opacity 0.2s ease-in-out'
               fontSize='xs'
+              display={isBeytFirstPartAnswerCorrect ? 'none' : 'block'}
               opacity={userInputAnswer ? 1 : 0}
               border='solid 1px orange'
               borderRadius='15px'
-              p='1'
+              p='3px'
               bg='orange'
             >
               {answerHintPlaceholder}
