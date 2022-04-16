@@ -70,7 +70,10 @@ class MyDocument extends Document {
           <meta property='og:type' content='website' />
 
           <meta name='twitter:title' content='اکسیر | هر روز سخنی از عشق' />
-          <meta name='twitter:image' content='/thumbnail.png' />
+          <meta
+            name='twitter:image'
+            content='https://res.cloudinary.com/dxu6gcib2/image/upload/v1650110764/exssir/exssir-card-thumbnail_z0jtdm.png'
+          />
           <meta
             name='twitter:description'
             content='هر ۲۴ ساعت یک بیت شعر مرور کنید'
