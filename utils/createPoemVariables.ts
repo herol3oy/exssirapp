@@ -1,6 +1,7 @@
 import { poems } from '@/db/poems'
 import { Poem } from '@/model/Poem'
 import { daysSince } from './countDay'
+import { shuffle } from 'lodash'
 
 const todayBeyt: Poem = poems[daysSince]
 
@@ -16,9 +17,7 @@ const answerHintPlaceholder: string = beytFirstPartAnswer
   .join(' ')
 
 const beytSecondPartWords: string[] = todayBeyt.m2.split(' ')
-const beytSecondPartWordsShuffled: string[] = todayBeyt.m2
-  .split(' ')
-  .sort(() => Math.random() - 0.5)
+const beytSecondPartWordsShuffled: string[] = shuffle(todayBeyt.m2.split(' '))
 
 export {
   todayBeyt,
