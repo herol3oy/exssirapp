@@ -7,6 +7,7 @@ import {
 } from '@/utils/createPoemVariables'
 import {
   Button,
+  Flex,
   Heading,
   Modal,
   ModalBody,
@@ -20,6 +21,10 @@ import {
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { Dispatch, ReactChildren, SetStateAction } from 'react'
+import Countdown from 'react-countdown'
+import { startOfTomorrow } from 'date-fns'
+
+const midnight: Date = startOfTomorrow()
 
 const firstBeytToShare: string = beytFirstPartWords
   .map((word) => (word === beytFirstPartAnswer ? '💬' : word))
@@ -72,15 +77,21 @@ const WonGameModal = ({
             {todayBeyt.poet}
           </Text>
         </ModalBody>
-        <ModalFooter justifyContent='space-between'>
-          <Button onClick={onCopy} colorScheme='twitter' variant='solid'>
-            {hasCopied ? 'کپی‌شد' : 'به اشتراک بذارید'}
-          </Button>
-          <Button colorScheme='yellow' variant='solid'>
-            <Link href={todayBeyt.url} passHref>
-              <a target='_blank'>متن کامل شعر</a>
-            </Link>
-          </Button>
+        <ModalFooter>
+          <Flex flexDir='column' ml='auto' gap={2}>
+            <Button colorScheme='yellow' variant='solid'>
+              <Link href={todayBeyt.url} passHref>
+                <a target='_blank'>متن کامل شعر</a>
+              </Link>
+            </Button>
+            <Button onClick={onCopy} colorScheme='twitter' variant='solid'>
+              {hasCopied ? 'کپی‌شد' : 'به اشتراک بذارید'}
+            </Button>
+          </Flex>
+          <Flex flexDir='column' alignItems='center'>
+            <Text fontSize='xl'>بیت بعدی</Text>
+            <Countdown date={midnight} daysInHours />
+          </Flex>
         </ModalFooter>
       </ModalContent>
     </Modal>
