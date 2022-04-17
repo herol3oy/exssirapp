@@ -61,7 +61,10 @@ class MyDocument extends Document {
           <meta name='theme-color' content='lightgreen' />
 
           <meta property='og:title' content='اکسیر | هر روز سخنی از عشق' />
-          <meta property='og:image' content='/thumbnail.png' />
+          <meta
+            property='og:image'
+            content='https://res.cloudinary.com/dxu6gcib2/image/upload/v1650110764/exssir/exssir-card-thumbnail_z0jtdm.png'
+          />
           <meta
             property='og:description'
             content='هر ۲۴ ساعت یک بیت شعر مرور کنید'
