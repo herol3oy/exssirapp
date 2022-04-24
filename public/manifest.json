@@ -2,7 +2,7 @@
   "name": "اکسیر",
   "short_name": "اکسیر",
   "theme_color": "#ffffff",
-  "background_color": "lightgreen",
+  "background_color": "#68d391",
   "display": "fullscreen",
   "orientation": "portrait",
   "scope": "/",

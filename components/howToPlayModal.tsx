@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import {
   Modal,
   ModalOverlay,
@@ -22,32 +21,20 @@ const HowToPlayModal = ({ isOpen, onClose }: ModalProps): JSX.Element => {
         backdropInvert='80%'
         backdropBlur='2px'
       />
-      <ModalContent>
+      <ModalContent mx='2'>
         <ModalHeader color='GrayText' textAlign='center'>
-          راهنمای بازی
+          راهنمای اکسیر
         </ModalHeader>
         <Divider style={{ margin: '10px 0' }} />
 
         <ModalCloseButton color='GrayText' />
         <ModalBody color='GrayText'>
-          <Text fontSize='sm' mb={2}>
-            بیت اول دو حرف از یک کلمه پنج‌حرفی را تایپ کنید.
+          <Text fontSize='md' mb={2}>
+            بیت اول، دو حرف از یک کلمه پنج‌حرفی را تایپ کنید.
           </Text>
-          <Image
-            src='/beyt-first-part.gif'
-            width={598}
-            height={50}
-            alt='exssir'
-          />
-          <Text mt={2} fontSize='sm' mb={2}>
-            بیت دوم کلمات را به روش گرفتن و انداختن به ترتیب قرار دهید.
+          <Text mt={2} fontSize='md' mb={2}>
+            بیت دوم، کلمات را به روش گرفتن و انداختن به ترتیب قرار دهید.
           </Text>
-          <Image
-            src='/beyt-second-part.gif'
-            width={598}
-            height={84}
-            alt='exssir'
-          />
           <Text mt={2} fontSize='sm' fontWeight='thin'>
             اپلیکشن اکسیر الهام گرفته از بازی
             {` `}
@@ -65,8 +52,30 @@ const HowToPlayModal = ({ isOpen, onClose }: ModalProps): JSX.Element => {
             {` `}
             روزنامه نیویورک تایمز است که هدف توسعه دهنده از راه‌اندازی این
             اپلیکشن رونق بیشتر شعر خوانی و حفظ ابیات فارسی از طریق انجام یک بازی
-            ساده آنلاین است. منبع اشعار استفاده شده وبسایت کنجور است که پس از
-            پایان بازی لینک بیت قابل دسترس خواهد بود.
+            ساده آنلاین است. منبع اشعار استفاده شده وبسایت
+            {` `}
+            <Link href='https://ganjoor.net/' passHref>
+              <a
+                target='_blank'
+                style={{ fontWeight: 'bold', textDecoration: 'underline' }}
+              >
+                کنجور
+              </a>
+            </Link>
+            {` `}
+            است که پس از پایان بازی لینک بیت قابل دسترس خواهد بود. لازم به ذکر
+            است کد وبسایت اکسیر بصورت منبع باز بر روی
+            {` `}
+            <Link href='https://github.com/herol3oy/exssirapp' passHref>
+              <a
+                target='_blank'
+                style={{ fontWeight: 'bold', textDecoration: 'underline' }}
+              >
+                گیتهاب
+              </a>
+            </Link>
+            {` `}
+            قابل دسترس است.
           </Text>
         </ModalBody>
         <Divider style={{ margin: '10px 0' }} />
