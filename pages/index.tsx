@@ -12,7 +12,6 @@ import {
 } from '@/utils/createPoemVariables'
 import { Container, Flex, Text } from '@chakra-ui/react'
 import { Children, useEffect, useState } from 'react'
-import Confetti from 'react-confetti'
 
 const IndexPage: () => boolean | JSX.Element = () => {
   const [userInputAnswer, userInputAnswerSet] = useState<string | undefined>('')
@@ -60,9 +59,6 @@ const IndexPage: () => boolean | JSX.Element = () => {
   return (
     isBrowser && (
       <Container maxW='full'>
-        {isGameFinished && (
-          <Confetti recycle={false} height={windowHeight} width={windowWidth} />
-        )}
         <Flex
           flexDir='column'
           alignItems='center'
@@ -90,6 +86,8 @@ const IndexPage: () => boolean | JSX.Element = () => {
         <WonGameModal
           isGameFinished={isGameFinished}
           isGameFinishedSet={isGameFinishedSet}
+          windowWidth={windowWidth}
+          windowHeight={windowHeight}
         >
           {Children}
         </WonGameModal>
