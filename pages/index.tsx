@@ -75,6 +75,7 @@ const IndexPage: () => boolean | JSX.Element = () => {
             todayBeytRandomizedSet={todayBeytRandomizedSet}
             isBeytSecondPartAnswerCorrect={isBeytSecondPartAnswerCorrect}
             todayBeytRandomized={todayBeytRandomized}
+            beytSecondPartWords={beytSecondPartWords}
           />
           <Text color='GrayText' fontSize={16} mb='8'>
             {todayBeyt?.poet}

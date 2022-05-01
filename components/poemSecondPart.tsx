@@ -1,16 +1,43 @@
 import { Flex, Tag, TagLabel } from '@chakra-ui/react'
-import { PoemSecondPartType } from 'model/poem-second-part'
-import SortableList, { SortableItem } from 'react-easy-sort'
 import arrayMove from 'array-move'
+import { PoemSecondPartType } from 'model/poem-second-part'
+import { useEffect, useState } from 'react'
+import SortableList, { SortableItem } from 'react-easy-sort'
 
 const PoemSecondPart = ({
   isBeytSecondPartAnswerCorrect,
   todayBeytRandomized,
   todayBeytRandomizedSet,
+  beytSecondPartWords,
 }: PoemSecondPartType) => {
+  const [firstWord, setFirstWord] = useState<boolean>(false)
+  const [secondWord, setSecondWord] = useState<boolean>(false)
+  const [thirdWord, setThirdWord] = useState<boolean>(false)
+  const [fourthWord, setFourthWord] = useState<boolean>(false)
+  const [fifthWord, setFifthWord] = useState<boolean>(false)
+
   const onSortEnd = (oldIndex: number, newIndex: number) => {
     todayBeytRandomizedSet((array) => arrayMove(array, oldIndex, newIndex))
   }
+
+  useEffect(() => {
+    todayBeytRandomized[0] === beytSecondPartWords[0]
+      ? setFirstWord(true)
+      : setFirstWord(false)
+    todayBeytRandomized[1] === beytSecondPartWords[1]
+      ? setSecondWord(true)
+      : setSecondWord(false)
+    todayBeytRandomized[2] === beytSecondPartWords[2]
+      ? setThirdWord(true)
+      : setThirdWord(false)
+    todayBeytRandomized[3] === beytSecondPartWords[3]
+      ? setFourthWord(true)
+      : setFourthWord(false)
+    todayBeytRandomized[4] === beytSecondPartWords[4]
+      ? setFifthWord(true)
+      : setFifthWord(false)
+  }, [todayBeytRandomized, beytSecondPartWords])
+
   return (
     <Flex m={6}>
       <SortableList
@@ -19,7 +46,7 @@ const PoemSecondPart = ({
         style={{ display: 'flex' }}
         onSortEnd={onSortEnd}
       >
-        {todayBeytRandomized.map((word: string) => (
+        {todayBeytRandomized.map((word: string, wordIndex: number) => (
           <SortableItem key={`${word}${Math.random().toString()}`}>
             <Tag
               size='xl'
@@ -27,7 +54,15 @@ const PoemSecondPart = ({
               variant='solid'
               p={3}
               mr={2}
-              bg={isBeytSecondPartAnswerCorrect ? 'green.300' : 'gray'}
+              bg={
+                (firstWord && wordIndex === 0) ||
+                (secondWord && wordIndex === 1) ||
+                (thirdWord && wordIndex === 2) ||
+                (fourthWord && wordIndex === 3) ||
+                (fifthWord && wordIndex === 4)
+                  ? 'green.300'
+                  : 'gray'
+              }
               cursor='grab'
             >
               <TagLabel>{word}</TagLabel>
