@@ -13,7 +13,6 @@ import {
   Heading,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -40,6 +39,7 @@ const daysSinceInPersianLetter: string = new Intl.NumberFormat('fa-IR').format(
 )
 
 const WonGameModal = ({
+  gameRoundSet,
   isGameFinished,
   isGameFinishedSet,
   windowWidth,
@@ -56,7 +56,7 @@ const WonGameModal = ({
   return (
     <>
       <Modal
-        onClose={() => {}}
+        onClose={() => gameRoundSet(0)}
         isOpen={isGameFinished}
         closeOnOverlayClick
         closeOnEsc
@@ -71,10 +71,17 @@ const WonGameModal = ({
               width={windowWidth}
             />
           )}
-          <ModalHeader textAlign='center'>
+          <ModalHeader display='flex' justifyContent='space-between'>
+            <Button
+              variant='solid'
+              colorScheme='pink'
+              onClick={() => isGameFinishedSet(false)}
+            >
+              دوباره
+            </Button>
             <Text fontSize='3xl'>🎉 آفرین 🎉</Text>
+            <Flex></Flex>
           </ModalHeader>
-          <ModalCloseButton onClick={() => isGameFinishedSet(false)} />
           <ModalBody
             display='flex'
             flexDirection='column'
@@ -122,10 +129,6 @@ const WonGameModal = ({
             </SimpleGrid>
           </ModalFooter>
         </ModalContent>
-        <style global jsx>{`
-          .countdown {
-          }
-        `}</style>
       </Modal>
     </>
   )

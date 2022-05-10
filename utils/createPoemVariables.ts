@@ -17,6 +17,7 @@ const answerHintPlaceholder: string = beytFirstPartAnswer
   .join(' ')
 
 const beytSecondPartWords: string[] = todayBeyt.m2.split(' ')
+const beytFirstPartWordsShuffled: string[] = shuffle(todayBeyt.m1.split(' '))
 const beytSecondPartWordsShuffled: string[] = shuffle(todayBeyt.m2.split(' '))
 
 export {
@@ -24,6 +25,7 @@ export {
   beytFirstPartWords,
   beytFirstPartAnswer,
   beytSecondPartWords,
+  beytFirstPartWordsShuffled,
   beytSecondPartWordsShuffled,
   answerHintPlaceholder,
 }

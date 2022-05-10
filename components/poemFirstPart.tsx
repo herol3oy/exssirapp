@@ -6,7 +6,6 @@ import {
 import { Flex, FormControl, FormLabel, Input, Text } from '@chakra-ui/react'
 import { PoemFirstPartType } from 'model/poem-first-part'
 import { ChangeEvent } from 'react'
-import 'react-simple-keyboard/build/css/index.css'
 
 const PoemFirstPart = ({
   isBeytFirstPartAnswerCorrect,
