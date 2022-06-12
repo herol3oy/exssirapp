@@ -19,6 +19,7 @@ import {
   SimpleGrid,
   Text,
   useClipboard,
+  useDisclosure,
 } from '@chakra-ui/react'
 import { startOfTomorrow } from 'date-fns'
 import Link from 'next/link'
@@ -52,11 +53,12 @@ const WonGameModal = ({
     ${todayBeyt.poet}\n
     https://exss.ir/`
   )
+  const { onClose } = useDisclosure()
 
   return (
     <>
       <Modal
-        onClose={() => gameRoundSet(0)}
+        onClose={onClose}
         isOpen={isGameFinished}
         closeOnOverlayClick
         closeOnEsc
@@ -75,7 +77,10 @@ const WonGameModal = ({
             <Button
               variant='solid'
               colorScheme='pink'
-              onClick={() => isGameFinishedSet(false)}
+              onClick={() => {
+                isGameFinishedSet(false)
+                gameRoundSet(0)
+              }}
             >
               دوباره
             </Button>

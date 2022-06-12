@@ -20,7 +20,7 @@ import {
 } from 'react'
 import { motion } from 'framer-motion'
 
-const GAME_LEVEL: number[] = [1, 2, 3, 4]
+const GAME_LEVEL: number[] = Array.from(Array(4).keys(), (n) => n + 1)
 
 const IndexPage = (): boolean | null | JSX.Element => {
   const [isGameFinished, isGameFinishedSet] = useState<boolean>(false)
@@ -40,7 +40,6 @@ const IndexPage = (): boolean | null | JSX.Element => {
 
   return !isBrowser ? null : (
     <Container maxW='full'>
-      {gameRound}
       <Animation>
         <Flex
           flexDir='column'
