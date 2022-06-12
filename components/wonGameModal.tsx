@@ -65,7 +65,7 @@ const WonGameModal = ({
         isCentered
         size='full'
       >
-        <ModalContent bg='green.300'>
+        <ModalContent>
           {isGameFinished && (
             <Confetti
               recycle={false}
@@ -93,37 +93,38 @@ const WonGameModal = ({
             justifyContent='center'
             textAlign='center'
           >
-            <Heading size='xl' fontFamily="'Vazir', sans-serif;" mb='4'>
+            <Heading
+              color='black'
+              size='xl'
+              fontFamily="'Vazir', sans-serif;"
+              mb='4'
+            >
               {todayBeyt.m1}
             </Heading>
-            <Heading size='xl' fontFamily="'Vazir', sans-serif;">
+            <Heading color='black' size='xl' fontFamily="'Vazir', sans-serif;">
               {todayBeyt.m2}
             </Heading>
-            <Text color='green.700' fontSize='18' mt='4'>
+            <Text color='black' fontSize='18' mt='4'>
               {todayBeyt.poet}
             </Text>
           </ModalBody>
           <Divider />
           <ModalFooter>
-            <SimpleGrid columns={3} alignItems='flex-end' m='auto' gap={2}>
-              <Button colorScheme='yellow' variant='solid' size='sm'>
+            <SimpleGrid columns={3} alignItems='flex-end' ml='auto' gap={2}>
+              <Button bg='#4cac4e' color='#abf091' size='sm'>
                 <Link href={todayBeyt.url} passHref>
                   <a target='_blank'>متن کامل شعر</a>
                 </Link>
               </Button>
-              <Button
-                onClick={onCopy}
-                colorScheme='twitter'
-                variant='solid'
-                size='sm'
-              >
+              <Button bg='#4cac4e' onClick={onCopy} color='#abf091' size='sm'>
                 {hasCopied ? 'کپی‌شد' : 'به اشتراک بذارید'}
               </Button>
               <Flex flexDir='column'>
-                <Text fontSize='md' textAlign='center'>
-                  بیت بعدی
-                </Text>
-                <Button colorScheme='orange' variant='solid' size='sm'>
+                <Button bg='#4cac4e' color='#abf091' size='sm'>
+                  <Text fontSize='md' textAlign='center' ml='5px'>
+                    تا بیت بعدی
+                  </Text>
+
                   <Countdown
                     date={midnight}
                     daysInHours

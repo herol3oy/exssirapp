@@ -5,13 +5,24 @@ import {
 } from '@/utils/createPoemVariables'
 import { Flex, FormControl, FormLabel, Input, Text } from '@chakra-ui/react'
 import { PoemFirstPartType } from 'model/poem-first-part'
-import { ChangeEvent } from 'react'
+import { ChangeEvent, useEffect } from 'react'
 
 const PoemFirstPart = ({
   isBeytFirstPartAnswerCorrect,
+  isBeytFirstPartAnswerCorrectSet,
   userInputAnswer,
   userInputAnswerSet,
+  gameRoundSet,
 }: PoemFirstPartType): JSX.Element => {
+  useEffect(() => {
+    if (beytFirstPartAnswer === userInputAnswer) {
+      isBeytFirstPartAnswerCorrectSet(true)
+      gameRoundSet(3)
+    } else {
+      isBeytFirstPartAnswerCorrectSet(false)
+    }
+  }, [gameRoundSet, isBeytFirstPartAnswerCorrectSet, userInputAnswer])
+
   return (
     <Flex alignItems={['flex-end', 'flex-start']}>
       {beytFirstPartWords?.map((word: string) =>

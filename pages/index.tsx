@@ -19,24 +19,32 @@ import {
   useState,
 } from 'react'
 import { motion } from 'framer-motion'
+import Keypad from '@/components/keypad'
+import PoemFirstPart from '@/components/poemFirstPart'
 
-const GAME_LEVEL: number[] = Array.from(Array(4).keys(), (n) => n + 1)
+const GAME_LEVEL: number[] = Array.from(Array(3).keys(), (n) => n + 1)
 
 const IndexPage = (): boolean | null | JSX.Element => {
   const [isGameFinished, isGameFinishedSet] = useState<boolean>(false)
   const [windowWidth, windowWidthSet] = useState<number>(0)
   const [windowHeight, windowHeightSet] = useState<number>(0)
   const [gameRound, gameRoundSet] = useState<number>(0)
+  const [isBeytFirstPartAnswerCorrect, isBeytFirstPartAnswerCorrectSet] =
+    useState<boolean>(false)
+
+  const [userInputAnswer, userInputAnswerSet] = useState<string | undefined>('')
 
   const { isBrowser } = useIsBrowser()
 
   useEffect(() => {
+    isBeytFirstPartAnswerCorrectSet(false)
     gameRound >= GAME_LEVEL.length
       ? isGameFinishedSet(true)
       : isGameFinishedSet(false)
+
     windowWidthSet(window.innerWidth)
     windowHeightSet(window.innerHeight)
-  }, [gameRound])
+  }, [gameRound, userInputAnswer, isBeytFirstPartAnswerCorrect])
 
   return !isBrowser ? null : (
     <Container maxW='full'>
@@ -48,7 +56,14 @@ const IndexPage = (): boolean | null | JSX.Element => {
           h='calc(100vh - 70px)'
           fontSize={['1.2rem', '2rem', '2.2rem', '2.5rem']}
         >
-          {MainGame(gameRound, gameRoundSet)}
+          {MainGame(
+            gameRound,
+            gameRoundSet,
+            isBeytFirstPartAnswerCorrect,
+            userInputAnswer,
+            userInputAnswerSet,
+            isBeytFirstPartAnswerCorrectSet
+          )}
 
           <Text color='GrayText' fontSize={16} mb='8'>
             {todayBeyt?.poet}
@@ -85,10 +100,14 @@ const Animation = ({ children }: { children: ReactChild }): JSX.Element => (
 
 const MainGame = (
   gameRound: number,
-  gameRoundSet: Dispatch<SetStateAction<number>>
+  gameRoundSet: Dispatch<SetStateAction<number>>,
+  isBeytFirstPartAnswerCorrect: boolean,
+  userInputAnswer: string | undefined,
+  userInputAnswerSet: Dispatch<SetStateAction<string | undefined>>,
+  isBeytFirstPartAnswerCorrectSet: Dispatch<SetStateAction<boolean>>
 ): (JSX.Element | undefined)[] =>
   GAME_LEVEL.map((level: number, levelIndex: number) => {
-    if (level % 2 && gameRound === levelIndex) {
+    if (level === 1 && gameRound === levelIndex) {
       return (
         <Animation key={level.toString()}>
           <>
@@ -104,7 +123,7 @@ const MainGame = (
         </Animation>
       )
     }
-    if (!(level % 2) && gameRound === levelIndex) {
+    if (level === 2 && gameRound === levelIndex) {
       return (
         <Animation key={level.toString()}>
           <>
@@ -116,6 +135,25 @@ const MainGame = (
               hemistich={beytSecondPartWords}
               shuffleWords={beytSecondPartWordsShuffled}
             />
+          </>
+        </Animation>
+      )
+    }
+    if (level === 3 && gameRound === levelIndex) {
+      return (
+        <Animation key={level.toString()}>
+          <>
+            <PoemFirstPart
+              isBeytFirstPartAnswerCorrect={isBeytFirstPartAnswerCorrect}
+              isBeytFirstPartAnswerCorrectSet={isBeytFirstPartAnswerCorrectSet}
+              userInputAnswer={userInputAnswer}
+              userInputAnswerSet={userInputAnswerSet}
+              gameRoundSet={gameRoundSet}
+            />
+            <TextHemistich hemistich={beytSecondPartWords} />
+            <Container maxW='container.sm'>
+              <Keypad userInputAnswerSet={userInputAnswerSet} />
+            </Container>
           </>
         </Animation>
       )
