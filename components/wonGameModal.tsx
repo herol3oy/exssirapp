@@ -7,6 +7,7 @@ import {
   todayBeyt,
 } from '@/utils/createPoemVariables'
 import {
+  Box,
   Button,
   Divider,
   Flex,
@@ -19,6 +20,7 @@ import {
   SimpleGrid,
   Text,
   useClipboard,
+  Image,
   useDisclosure,
 } from '@chakra-ui/react'
 import { startOfTomorrow } from 'date-fns'
@@ -65,7 +67,12 @@ const WonGameModal = ({
         isCentered
         size='full'
       >
-        <ModalContent>
+        <ModalContent
+          backgroundImage='won-bg.gif'
+          backgroundSize='cover'
+          backgroundPosition={['25% 75%', 'bottom']}
+          overflow='hidden'
+        >
           {isGameFinished && (
             <Confetti
               recycle={false}
@@ -73,25 +80,30 @@ const WonGameModal = ({
               width={windowWidth}
             />
           )}
-          <ModalHeader display='flex' justifyContent='space-between'>
+          <ModalHeader display='flex' justifyContent='center'>
             <Button
+              position='absolute'
+              top='1em'
+              right='1em'
               variant='solid'
-              colorScheme='pink'
+              bg='#4cac4e'
+              color='#abf091'
               onClick={() => {
                 isGameFinishedSet(false)
-                gameRoundSet(0)
+                gameRoundSet(1)
               }}
             >
               دوباره
             </Button>
-            <Text fontSize='3xl'>🎉 آفرین 🎉</Text>
-            <Flex></Flex>
+            <Box boxSize={['200px', '300px']}>
+              <Image src='afarin.gif' alt='آفرین' />
+            </Box>
           </ModalHeader>
           <ModalBody
             display='flex'
             flexDirection='column'
-            justifyContent='center'
             textAlign='center'
+            flexWrap='nowrap'
           >
             <Heading
               color='black'
@@ -104,23 +116,44 @@ const WonGameModal = ({
             <Heading color='black' size='xl' fontFamily="'Vazir', sans-serif;">
               {todayBeyt.m2}
             </Heading>
-            <Text color='black' fontSize='18' mt='4'>
+            <Text color='black' fontSize='x-large' mt='4'>
               {todayBeyt.poet}
             </Text>
           </ModalBody>
           <Divider />
           <ModalFooter>
             <SimpleGrid columns={3} alignItems='flex-end' ml='auto' gap={2}>
-              <Button bg='#4cac4e' color='#abf091' size='sm'>
+              <Button
+                bg='#4cac4e'
+                color='#abf091'
+                size='sm'
+                borderTopLeftRadius={0}
+                borderBottomLeftRadius={0}
+              >
                 <Link href={todayBeyt.url} passHref>
                   <a target='_blank'>متن کامل شعر</a>
                 </Link>
               </Button>
-              <Button bg='#4cac4e' onClick={onCopy} color='#abf091' size='sm'>
+              <Button
+                bg='#4cac4e'
+                onClick={onCopy}
+                color='#abf091'
+                size='sm'
+                borderTopRightRadius={0}
+                borderBottomRightRadius={0}
+                borderTopLeftRadius={0}
+                borderBottomLeftRadius={0}
+              >
                 {hasCopied ? 'کپی‌شد' : 'به اشتراک بذارید'}
               </Button>
               <Flex flexDir='column'>
-                <Button bg='#4cac4e' color='#abf091' size='sm'>
+                <Button
+                  bg='#4cac4e'
+                  color='#abf091'
+                  size='sm'
+                  borderTopRightRadius={0}
+                  borderBottomRightRadius={0}
+                >
                   <Text fontSize='md' textAlign='center' ml='5px'>
                     تا بیت بعدی
                   </Text>

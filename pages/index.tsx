@@ -64,10 +64,6 @@ const IndexPage = (): boolean | null | JSX.Element => {
             userInputAnswerSet,
             isBeytFirstPartAnswerCorrectSet
           )}
-
-          <Text color='GrayText' fontSize={16} mb='8'>
-            {todayBeyt?.poet}
-          </Text>
         </Flex>
       </Animation>
       <WonGameModal
@@ -107,7 +103,7 @@ const MainGame = (
   isBeytFirstPartAnswerCorrectSet: Dispatch<SetStateAction<boolean>>
 ): (JSX.Element | undefined)[] =>
   GAME_LEVEL.map((level: number, levelIndex: number) => {
-    if (level === 1 && gameRound === levelIndex) {
+    if (level === GAME_LEVEL[0] && gameRound === levelIndex) {
       return (
         <Animation key={level.toString()}>
           <>
@@ -119,11 +115,14 @@ const MainGame = (
               shuffleWords={beytFirstPartWordsShuffled}
             />
             <TextHemistich hemistich={beytSecondPartWords} />
+            <Text color='GrayText' fontSize={16} mb='8'>
+              {todayBeyt?.poet}
+            </Text>
           </>
         </Animation>
       )
     }
-    if (level === 2 && gameRound === levelIndex) {
+    if (level === GAME_LEVEL[1] && gameRound === levelIndex) {
       return (
         <Animation key={level.toString()}>
           <>
@@ -135,11 +134,14 @@ const MainGame = (
               hemistich={beytSecondPartWords}
               shuffleWords={beytSecondPartWordsShuffled}
             />
+            <Text color='GrayText' fontSize={16} mb='8'>
+              {todayBeyt?.poet}
+            </Text>
           </>
         </Animation>
       )
     }
-    if (level === 3 && gameRound === levelIndex) {
+    if (level === GAME_LEVEL[2] && gameRound === levelIndex) {
       return (
         <Animation key={level.toString()}>
           <>
@@ -151,6 +153,9 @@ const MainGame = (
               gameRoundSet={gameRoundSet}
             />
             <TextHemistich hemistich={beytSecondPartWords} />
+            <Text color='GrayText' fontSize={16} mb='8'>
+              {todayBeyt?.poet}
+            </Text>
             <Container maxW='container.sm'>
               <Keypad userInputAnswerSet={userInputAnswerSet} />
             </Container>
