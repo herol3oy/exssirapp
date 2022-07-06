@@ -9,7 +9,6 @@ import {
 import {
   Box,
   Button,
-  Divider,
   Flex,
   Heading,
   Modal,
@@ -25,7 +24,6 @@ import {
 } from '@chakra-ui/react'
 import { startOfTomorrow } from 'date-fns'
 import Link from 'next/link'
-import Confetti from 'react-confetti'
 import Countdown from 'react-countdown'
 
 const midnight: Date = startOfTomorrow()
@@ -45,8 +43,6 @@ const WonGameModal = ({
   gameRoundSet,
   isGameFinished,
   isGameFinishedSet,
-  windowWidth,
-  windowHeight,
 }: WonGameModalType): JSX.Element => {
   const { hasCopied, onCopy } = useClipboard(
     `اکسیر | بیت روز ${daysSinceInPersianLetter} ام \n
@@ -73,13 +69,6 @@ const WonGameModal = ({
           backgroundPosition={['25% 75%', 'bottom']}
           overflow='hidden'
         >
-          {isGameFinished && (
-            <Confetti
-              recycle={false}
-              height={windowHeight}
-              width={windowWidth}
-            />
-          )}
           <ModalHeader display='flex' justifyContent='center'>
             <Button
               position='absolute'
@@ -120,7 +109,6 @@ const WonGameModal = ({
               {todayBeyt.poet}
             </Text>
           </ModalBody>
-          <Divider />
           <ModalFooter>
             <SimpleGrid columns={3} alignItems='flex-end' ml='auto' gap={2}>
               <Button

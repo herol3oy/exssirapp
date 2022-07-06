@@ -26,8 +26,6 @@ const GAME_LEVEL: number[] = Array.from(Array(3).keys(), (n) => n + 1)
 
 const IndexPage = (): boolean | null | JSX.Element => {
   const [isGameFinished, isGameFinishedSet] = useState<boolean>(false)
-  const [windowWidth, windowWidthSet] = useState<number>(0)
-  const [windowHeight, windowHeightSet] = useState<number>(0)
   const [gameRound, gameRoundSet] = useState<number>(0)
   const [isBeytFirstPartAnswerCorrect, isBeytFirstPartAnswerCorrectSet] =
     useState<boolean>(false)
@@ -41,9 +39,6 @@ const IndexPage = (): boolean | null | JSX.Element => {
     gameRound >= GAME_LEVEL.length
       ? isGameFinishedSet(true)
       : isGameFinishedSet(false)
-
-    windowWidthSet(window.innerWidth)
-    windowHeightSet(window.innerHeight)
   }, [gameRound, userInputAnswer, isBeytFirstPartAnswerCorrect])
 
   return !isBrowser ? null : (
@@ -70,8 +65,6 @@ const IndexPage = (): boolean | null | JSX.Element => {
         gameRoundSet={gameRoundSet}
         isGameFinished={isGameFinished}
         isGameFinishedSet={isGameFinishedSet}
-        windowWidth={windowWidth}
-        windowHeight={windowHeight}
       >
         {Children}
       </WonGameModal>

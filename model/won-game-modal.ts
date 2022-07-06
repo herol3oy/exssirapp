@@ -4,6 +4,4 @@ export interface WonGameModalType {
   isGameFinished: boolean
   isGameFinishedSet: Dispatch<SetStateAction<boolean>>
   gameRoundSet: Dispatch<SetStateAction<number>>
-  windowWidth: number
-  windowHeight: number
 }
