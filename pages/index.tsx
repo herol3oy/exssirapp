@@ -21,12 +21,14 @@ import {
 import { motion } from 'framer-motion'
 import Keypad from '@/components/keypad'
 import PoemFirstPart from '@/components/poemFirstPart'
+import { getDisplayName } from 'next/dist/shared/lib/utils'
 
 const GAME_LEVEL: number[] = Array.from(Array(3).keys(), (n) => n + 1)
 
 const IndexPage = (): boolean | null | JSX.Element => {
   const [isGameFinished, isGameFinishedSet] = useState<boolean>(false)
   const [gameRound, gameRoundSet] = useState<number>(0)
+  const [displayLogo, displayLogoSet] = useState<boolean>(false)
   const [isBeytFirstPartAnswerCorrect, isBeytFirstPartAnswerCorrectSet] =
     useState<boolean>(false)
 
@@ -35,11 +37,13 @@ const IndexPage = (): boolean | null | JSX.Element => {
   const { isBrowser } = useIsBrowser()
 
   useEffect(() => {
+    console.log(displayLogo)
+
     isBeytFirstPartAnswerCorrectSet(false)
     gameRound >= GAME_LEVEL.length
       ? isGameFinishedSet(true)
       : isGameFinishedSet(false)
-  }, [gameRound, userInputAnswer, isBeytFirstPartAnswerCorrect])
+  }, [displayLogo, gameRound, userInputAnswer, isBeytFirstPartAnswerCorrect])
 
   return !isBrowser ? null : (
     <Container
@@ -49,37 +53,42 @@ const IndexPage = (): boolean | null | JSX.Element => {
       alignItems='center'
       justifyContent='center'
     >
-      <Image
-        animation='updown 10s ease-in-out infinite'
-        src='new-logo.jpg'
-        // h='sm'
-        alt='exssir logo'
-      />
-      {/* <Animation>
-        <Flex
-          flexDir='column'
-          alignItems='center'
-          justifyContent='center'
-          h='calc(100vh - 70px)'
-          fontSize={['1.2rem', '2rem', '2.2rem', '2.5rem']}
-        >
-          {MainGame(
-            gameRound,
-            gameRoundSet,
-            isBeytFirstPartAnswerCorrect,
-            userInputAnswer,
-            userInputAnswerSet,
-            isBeytFirstPartAnswerCorrectSet
-          )}
-        </Flex>
-      </Animation>
+      <Box display={displayLogo ? 'none' : ''}>
+        <Image
+          animation='updown 10s ease-in-out infinite'
+          cursor='pointer'
+          src='new-logo.jpg'
+          alt='exssir logo'
+          onClick={() => displayLogoSet(true)}
+        />
+      </Box>
+      <Box display={displayLogo ? '' : 'none'}>
+        <Animation>
+          <Flex
+            flexDir='column'
+            alignItems='center'
+            justifyContent='center'
+            h='calc(100vh - 70px)'
+            fontSize={['1.2rem', '2rem', '2.2rem', '2.5rem']}
+          >
+            {MainGame(
+              gameRound,
+              gameRoundSet,
+              isBeytFirstPartAnswerCorrect,
+              userInputAnswer,
+              userInputAnswerSet,
+              isBeytFirstPartAnswerCorrectSet
+            )}
+          </Flex>
+        </Animation>
+      </Box>
       <WonGameModal
         gameRoundSet={gameRoundSet}
         isGameFinished={isGameFinished}
         isGameFinishedSet={isGameFinishedSet}
       >
         {Children}
-      </WonGameModal> */}
+      </WonGameModal>
       <style global jsx>{`
         body {
           background-color: #eee1d1 !important;
