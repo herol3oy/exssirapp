@@ -9,7 +9,7 @@ import {
   beytSecondPartWordsShuffled,
   todayBeyt,
 } from '@/utils/createPoemVariables'
-import { Container, Flex, Text } from '@chakra-ui/react'
+import { Container, Flex, Text, Image, Box } from '@chakra-ui/react'
 import {
   Children,
   Dispatch,
@@ -42,8 +42,20 @@ const IndexPage = (): boolean | null | JSX.Element => {
   }, [gameRound, userInputAnswer, isBeytFirstPartAnswerCorrect])
 
   return !isBrowser ? null : (
-    <Container maxW='full'>
-      <Animation>
+    <Container
+      maxW='full'
+      height='90vh'
+      display='flex'
+      alignItems='center'
+      justifyContent='center'
+    >
+      <Image
+        animation='updown 10s ease-in-out infinite'
+        src='Main_Page2.jpg'
+        // h='sm'
+        alt='exssir logo'
+      />
+      {/* <Animation>
         <Flex
           flexDir='column'
           alignItems='center'
@@ -67,7 +79,25 @@ const IndexPage = (): boolean | null | JSX.Element => {
         isGameFinishedSet={isGameFinishedSet}
       >
         {Children}
-      </WonGameModal>
+      </WonGameModal> */}
+      <style global jsx>{`
+        body {
+          background-color: #d2c18d !important;
+        }
+        @keyframes updown {
+          0% {
+            transform: translateY(-30px);
+          }
+
+          50% {
+            transform: translateY(0);
+          }
+
+          100% {
+            transform: translateY(-30px);
+          }
+        }
+      `}</style>
     </Container>
   )
 }
