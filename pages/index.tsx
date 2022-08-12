@@ -51,7 +51,7 @@ const IndexPage = (): boolean | null | JSX.Element => {
     >
       <Image
         animation='updown 10s ease-in-out infinite'
-        src='Main_Page2.jpg'
+        src='new-logo.jpg'
         // h='sm'
         alt='exssir logo'
       />
@@ -82,7 +82,7 @@ const IndexPage = (): boolean | null | JSX.Element => {
       </WonGameModal> */}
       <style global jsx>{`
         body {
-          background-color: #d2c18d !important;
+          background-color: #eee1d1 !important;
         }
         @keyframes updown {
           0% {
