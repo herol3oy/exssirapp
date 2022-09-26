@@ -29,6 +29,7 @@ const PoemFirstPart = ({
         word === beytFirstPartAnswer ? (
           <FormControl>
             <Input
+              _placeholder={{ color: 'white' }}
               key={word}
               borderBottomColor={
                 isBeytFirstPartAnswerCorrect ? 'green.300' : ''

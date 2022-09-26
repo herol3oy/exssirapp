@@ -9,41 +9,52 @@ import {
   beytSecondPartWordsShuffled,
   todayBeyt,
 } from '@/utils/createPoemVariables'
-import { Container, Flex, Text, Image, Box } from '@chakra-ui/react'
+import {
+  Container,
+  Flex,
+  Text,
+  Image,
+  Box,
+  Heading,
+  TagLabel,
+  Tag,
+} from '@chakra-ui/react'
 import {
   Children,
   Dispatch,
   ReactChild,
   SetStateAction,
+  useContext,
   useEffect,
   useState,
 } from 'react'
 import { motion } from 'framer-motion'
 import Keypad from '@/components/keypad'
 import PoemFirstPart from '@/components/poemFirstPart'
-import { getDisplayName } from 'next/dist/shared/lib/utils'
+import {
+  DisplayLogoContext,
+  ShouldDisplayLogo,
+} from 'context/displayLogoContext'
 
 const GAME_LEVEL: number[] = Array.from(Array(3).keys(), (n) => n + 1)
 
 const IndexPage = (): boolean | null | JSX.Element => {
   const [isGameFinished, isGameFinishedSet] = useState<boolean>(false)
   const [gameRound, gameRoundSet] = useState<number>(0)
-  const [displayLogo, displayLogoSet] = useState<boolean>(false)
   const [isBeytFirstPartAnswerCorrect, isBeytFirstPartAnswerCorrectSet] =
     useState<boolean>(false)
-
   const [userInputAnswer, userInputAnswerSet] = useState<string | undefined>('')
 
   const { isBrowser } = useIsBrowser()
+  const [displayLogo, displayLogoSet] =
+    useContext<ShouldDisplayLogo>(DisplayLogoContext)
 
   useEffect(() => {
-    console.log(displayLogo)
-
     isBeytFirstPartAnswerCorrectSet(false)
     gameRound >= GAME_LEVEL.length
       ? isGameFinishedSet(true)
       : isGameFinishedSet(false)
-  }, [displayLogo, gameRound, userInputAnswer, isBeytFirstPartAnswerCorrect])
+  }, [gameRound, userInputAnswer, isBeytFirstPartAnswerCorrect])
 
   return !isBrowser ? null : (
     <Container
@@ -71,6 +82,18 @@ const IndexPage = (): boolean | null | JSX.Element => {
             h='calc(100vh - 70px)'
             fontSize={['1.2rem', '2rem', '2.2rem', '2.5rem']}
           >
+            <Tag
+              size='lg'
+              borderRadius='full'
+              variant='solid'
+              colorScheme='green'
+            >
+              <TagLabel dir='ltr'>
+                <Heading size={'lg'}>
+                  {`${(gameRound + 1).toLocaleString('fa-IR')} / ۳`}
+                </Heading>
+              </TagLabel>
+            </Tag>
             {MainGame(
               gameRound,
               gameRoundSet,
