@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useRef } from 'react'
 import Keyboard from 'react-simple-keyboard'
+import 'react-simple-keyboard/build/css/index.css'
 
 const Keypad = ({
   userInputAnswerSet,

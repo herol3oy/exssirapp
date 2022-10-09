@@ -30,10 +30,11 @@ const HowToPlayModal = ({ isOpen, onClose }: ModalProps): JSX.Element => {
         <ModalCloseButton color='GrayText' />
         <ModalBody color='GrayText'>
           <Text fontSize='md' mb={2}>
-            بیت اول، دو حرف از یک کلمه پنج‌حرفی را تایپ کنید.
+            در مرحله اول و دوم، مصرع ها رو به روش گرفتن و انداختن به ترتیب قرار
+            دهید.
           </Text>
           <Text mt={2} fontSize='md' mb={2}>
-            بیت دوم، کلمات را به روش گرفتن و انداختن به ترتیب قرار دهید.
+            در مرحله سوم، تمام حروف کلمه پنج حرفی را تایپ کنید.
           </Text>
           <Text mt={2} fontSize='sm' fontWeight='thin'>
             اپلیکشن اکسیر الهام گرفته از بازی
@@ -63,19 +64,7 @@ const HowToPlayModal = ({ isOpen, onClose }: ModalProps): JSX.Element => {
               </a>
             </Link>
             {` `}
-            است که پس از پایان بازی لینک بیت قابل دسترس خواهد بود. لازم به ذکر
-            است کد وبسایت اکسیر بصورت منبع باز بر روی
-            {` `}
-            <Link href='https://github.com/herol3oy/exssirapp' passHref>
-              <a
-                target='_blank'
-                style={{ fontWeight: 'bold', textDecoration: 'underline' }}
-              >
-                گیتهاب
-              </a>
-            </Link>
-            {` `}
-            قابل دسترس است.
+            است که پس از پایان بازی لینک بیت قابل دسترس خواهد بود.
           </Text>
         </ModalBody>
         <Divider style={{ margin: '10px 0' }} />
