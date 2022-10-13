@@ -21,7 +21,6 @@ const customTheme: ThemeConfig = extendTheme({
         fontFamily: "'Vazir', sans-serif;",
         padding: '40px',
       },
-
       '.simple-keyboard.hg-layout-default .hg-button.hg-bksp': {
         background: 'gray',
         color: 'white',
@@ -31,6 +30,9 @@ const customTheme: ThemeConfig = extendTheme({
         borderRadius: '20px',
         margin: '10px',
         width: 'calc(100% - 20px)',
+      },
+      '.hg-button:not(:first-child)': {
+        marginRight: '5px !important',
       },
     }),
   },
