@@ -12,7 +12,7 @@ const Navbar: () => JSX.Element = () => {
   const [displayLogo] = useContext<ShouldDisplayLogo>(DisplayLogoContext)
   return (
     <>
-      <Flex maxH='70px' borderBottomWidth='thin' justifyContent='center'>
+      <Flex maxH='70px' justifyContent='center'>
         <IconButton
           position='absolute'
           right={5}
@@ -28,7 +28,6 @@ const Navbar: () => JSX.Element = () => {
         <Box display={displayLogo ? '' : 'none'}>
           <Image w={200} h={200} src='new-logo.jpg' alt='exssir logo' />
         </Box>
-        <Box></Box>
       </Flex>
       <HowToPlayModal isOpen={isOpen} onClose={onClose}>
         {Children}
