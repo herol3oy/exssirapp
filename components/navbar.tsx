@@ -12,8 +12,11 @@ const Navbar: () => JSX.Element = () => {
   const [displayLogo] = useContext<ShouldDisplayLogo>(DisplayLogoContext)
   return (
     <>
-      <Flex maxH='70px' borderBottomWidth='thin' justifyContent='space-between'>
+      <Flex maxH='70px' borderBottomWidth='thin' justifyContent='center'>
         <IconButton
+          position='absolute'
+          right={5}
+          top={5}
           onClick={onOpen}
           fontSize='2xl'
           aria-label='راهنما'
