@@ -15,12 +15,7 @@ import {
 const HowToPlayModal = ({ isOpen, onClose }: ModalProps): JSX.Element => {
   return (
     <Modal onClose={onClose} size='md' isOpen={isOpen}>
-      <ModalOverlay
-        bg='none'
-        backdropFilter='auto'
-        backdropInvert='80%'
-        backdropBlur='2px'
-      />
+      <ModalOverlay />
       <ModalContent mx='2'>
         <ModalHeader color='GrayText' textAlign='center'>
           راهنمای اکسیر
