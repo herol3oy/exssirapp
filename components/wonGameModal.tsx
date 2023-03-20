@@ -118,8 +118,8 @@ const WonGameModal = ({
                 borderTopLeftRadius={0}
                 borderBottomLeftRadius={0}
               >
-                <Link href={todayBeyt.url} passHref>
-                  <a target='_blank'>متن کامل شعر</a>
+                <Link href={todayBeyt.url} passHref target='_blank'>
+                  متن کامل شعر
                 </Link>
               </Button>
               <Button
