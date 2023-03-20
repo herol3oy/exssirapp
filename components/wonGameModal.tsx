@@ -76,7 +76,7 @@ const WonGameModal = ({
               right='1em'
               variant='solid'
               bg='#4cac4e'
-              color='#abf091'
+              color='blackAlpha.800'
               onClick={() => {
                 isGameFinishedSet(false)
                 gameRoundSet(1)
@@ -113,7 +113,7 @@ const WonGameModal = ({
             <SimpleGrid columns={3} alignItems='flex-end' ml='auto' gap={2}>
               <Button
                 bg='#4cac4e'
-                color='#abf091'
+                color='blackAlpha.800'
                 size='sm'
                 borderTopLeftRadius={0}
                 borderBottomLeftRadius={0}
@@ -125,7 +125,7 @@ const WonGameModal = ({
               <Button
                 bg='#4cac4e'
                 onClick={onCopy}
-                color='#abf091'
+                color='blackAlpha.800'
                 size='sm'
                 borderTopRightRadius={0}
                 borderBottomRightRadius={0}
@@ -137,7 +137,7 @@ const WonGameModal = ({
               <Flex flexDir='column'>
                 <Button
                   bg='#4cac4e'
-                  color='#abf091'
+                  color='blackAlpha.800'
                   size='sm'
                   borderTopRightRadius={0}
                   borderBottomRightRadius={0}
