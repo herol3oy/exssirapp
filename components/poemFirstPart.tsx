@@ -27,7 +27,7 @@ const PoemFirstPart = ({
     <Flex alignItems={['flex-end', 'flex-start']}>
       {beytFirstPartWords?.map((word: string) =>
         word === beytFirstPartAnswer ? (
-          <FormControl>
+          <FormControl key={word}>
             <Input
               _placeholder={{ color: 'white' }}
               key={word}

@@ -37,26 +37,23 @@ const HowToPlayModal = ({ isOpen, onClose }: ModalProps): JSX.Element => {
             <Link
               href='https://www.nytimes.com/games/wordle/index.html'
               passHref
+              target='_blank'
+              style={{ fontWeight: 'bold', textDecoration: 'underline' }}
             >
-              <a
-                target='_blank'
-                style={{ fontWeight: 'bold', textDecoration: 'underline' }}
-              >
-                Wordle
-              </a>
+              Wordle
             </Link>
             {` `}
             روزنامه نیویورک تایمز است که هدف توسعه دهنده از راه‌اندازی این
             اپلیکشن رونق بیشتر شعر خوانی و حفظ ابیات فارسی از طریق انجام یک بازی
             ساده آنلاین است. منبع اشعار استفاده شده وبسایت
             {` `}
-            <Link href='https://ganjoor.net/' passHref>
-              <a
-                target='_blank'
-                style={{ fontWeight: 'bold', textDecoration: 'underline' }}
-              >
-                کنجور
-              </a>
+            <Link
+              href='https://ganjoor.net/'
+              passHref
+              target='_blank'
+              style={{ fontWeight: 'bold', textDecoration: 'underline' }}
+            >
+              کنجور
             </Link>
             {` `}
             است که پس از پایان بازی لینک بیت قابل دسترس خواهد بود.
