@@ -29,7 +29,7 @@ const FirstHemistich = ({
         word === firstHemistichAnswer ? (
           <FormControl key={word}>
             <Input
-              _placeholder={{ color: 'white' }}
+              _placeholder={{ color: 'black' }}
               key={word}
               borderBottomColor={
                 isFirstHemistichAnswerCorrect ? 'green.300' : ''
@@ -39,7 +39,7 @@ const FirstHemistich = ({
               variant='flushed'
               disabled
               placeholder={answerHintPlaceholder}
-              color={isFirstHemistichAnswerCorrect ? 'green.300' : 'gray'}
+              color={isFirstHemistichAnswerCorrect ? 'green.300' : 'black'}
               value={userInputAnswer}
               onChange={(e: ChangeEvent<HTMLInputElement>): void =>
                 userInputAnswerSet(e.target.value)

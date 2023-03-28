@@ -132,7 +132,7 @@ const WonGameModal = ({
                 borderTopLeftRadius={0}
                 borderBottomLeftRadius={0}
               >
-                {hasCopied ? 'کپی‌شد' : 'به اشتراک بذارید'}
+                {hasCopied ? 'کپی‌شد' : 'اشتراک'}
               </Button>
               <Flex flexDir='column'>
                 <Button
@@ -143,7 +143,7 @@ const WonGameModal = ({
                   borderBottomRightRadius={0}
                 >
                   <Text fontSize='md' textAlign='center' ml='5px'>
-                    تا بیت بعدی
+                    بیت بعدی
                   </Text>
 
                   <Countdown
