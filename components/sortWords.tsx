@@ -45,6 +45,7 @@ const SortWords = ({
               mr={2}
               bg={word === hemistich[wordIndex] ? 'green.300' : 'gray'}
               cursor='grab'
+              userSelect='none'
             >
               <TagLabel>{word}</TagLabel>
             </Tag>

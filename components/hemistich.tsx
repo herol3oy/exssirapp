@@ -4,7 +4,7 @@ const TextHemistich = ({ hemistich }: { hemistich: string[] }): JSX.Element => {
   return (
     <Flex alignItems={['flex-end', 'flex-start']}>
       {hemistich.map((word: string) => (
-        <Text mr={2} color='GrayText' key={word}>
+        <Text userSelect='none' mr={2} color='GrayText' key={word}>
           {word}
         </Text>
       ))}
