@@ -1,4 +1,4 @@
-import { arrayEquals } from '@/utils/arrayEquals'
+import { arrayEqual } from '@/utils/array-equal'
 import { Flex, Tag, TagLabel } from '@chakra-ui/react'
 import arrayMove from 'array-move'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
@@ -21,7 +21,7 @@ const SortWords = ({
     useState<string[]>(shuffleWords)
 
   useEffect(() => {
-    arrayEquals(todayBeytRandomized, hemistich) && gameRoundSet(gameRound + 1)
+    arrayEqual(todayBeytRandomized, hemistich) && gameRoundSet(gameRound + 1)
   }, [todayBeytRandomized, hemistich, gameRound, gameRoundSet])
 
   const onSortEnd = (oldIndex: number, newIndex: number) => {

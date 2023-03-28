@@ -1,4 +1,4 @@
-import { Poem } from '../model/Poem'
+import { Poem } from '../model/poem'
 
 export const poems: Poem[] = [
   {

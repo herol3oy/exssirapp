@@ -1,15 +1,15 @@
 import { Flex, Tag, TagLabel } from '@chakra-ui/react'
 import arrayMove from 'array-move'
-import { PoemSecondPartType } from 'model/poem-second-part'
+import { SecondHemistichType } from 'model/second-hemistich'
 import { useEffect, useState } from 'react'
 import SortableList, { SortableItem } from 'react-easy-sort'
 
-const PoemSecondPart = ({
+const SecondHemistich = ({
   isBeytSecondPartAnswerCorrect,
   todayBeytRandomized,
   todayBeytRandomizedSet,
   beytSecondPartWords,
-}: PoemSecondPartType) => {
+}: SecondHemistichType) => {
   const [firstWord, setFirstWord] = useState<boolean>(false)
   const [secondWord, setSecondWord] = useState<boolean>(false)
   const [thirdWord, setThirdWord] = useState<boolean>(false)
@@ -74,4 +74,4 @@ const PoemSecondPart = ({
   )
 }
 
-export default PoemSecondPart
+export default SecondHemistich

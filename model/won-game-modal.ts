@@ -1,4 +1,5 @@
 import { Dispatch, ReactChildren, SetStateAction } from 'react'
+
 export interface WonGameModalType {
   children: ReactChildren
   isGameFinished: boolean
