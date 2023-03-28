@@ -31,7 +31,8 @@ import {
 import { motion } from 'framer-motion'
 import Keypad from '@/components/keypad'
 import FirstHemistich from '@/components/firstHemistich'
-import DisplayLogo, { DisplayLogoContext } from 'context/displayLogoContext'
+import { DisplayLogoContext } from 'context/displayLogoContext'
+import { DisplayLogo } from '@/model/display-logo'
 
 const GAME_LEVEL: number[] = Array.from(Array(3).keys(), (n) => n + 1)
 

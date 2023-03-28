@@ -1,6 +1,6 @@
 import { poems } from '@/db/poems'
 import { Poem } from '@/model/poem'
-import { daysSince } from '@/utils/countDay'
+import daysSince from '@/utils/count-day'
 import { Text } from '@chakra-ui/react'
 
 export default function SinglePoem({ poem }: { poem: Poem }) {

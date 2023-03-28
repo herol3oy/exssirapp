@@ -1,15 +1,13 @@
+import { DisplayLogo } from '@/model/display-logo'
 import { Box, Flex, IconButton, useDisclosure, Image } from '@chakra-ui/react'
-import {
-  DisplayLogoContext,
-  ShouldDisplayLogo,
-} from 'context/displayLogoContext'
+import { DisplayLogoContext } from 'context/displayLogoContext'
 import { Children, useContext } from 'react'
 import { FaQuestionCircle } from 'react-icons/fa'
 import HowToPlayModal from './howToPlayModal'
 
 const Navbar: () => JSX.Element = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [displayLogo] = useContext<ShouldDisplayLogo>(DisplayLogoContext)
+  const [displayLogo] = useContext<DisplayLogo>(DisplayLogoContext)
   return (
     <>
       <Flex maxH='70px' justifyContent='center'>
