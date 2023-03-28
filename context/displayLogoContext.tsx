@@ -1,18 +1,9 @@
-import {
-  ReactElement,
-  useState,
-  createContext,
-  Dispatch,
-  SetStateAction,
-} from 'react'
+import { ComponentChildren } from '@/model/component-children'
+import { useState, createContext } from 'react'
+import { DisplayLogo } from '../model/display-logo'
 
-export type ShouldDisplayLogo = [boolean, Dispatch<SetStateAction<boolean>>]
+const initialValue: DisplayLogo = [false, () => {}]
 
-interface ComponentChildren {
-  children: ReactElement
-}
-
-const initialValue: ShouldDisplayLogo = [false, () => {}]
 export const DisplayLogoContext = createContext(initialValue)
 
 const DisplayLogo = ({ children }: ComponentChildren) => {

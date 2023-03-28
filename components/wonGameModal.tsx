@@ -1,11 +1,11 @@
 import { WonGameModalType } from '@/model/won-game-modal'
-import { daysSince } from '@/utils/countDay'
+import daysSince from '@/utils/count-day'
 import {
-  beytFirstPartAnswer,
-  beytFirstPartWords,
-  beytSecondPartWordsShuffled,
-  todayBeyt,
-} from '@/utils/createPoemVariables'
+  firstHemistichAnswer,
+  firstHemistichWords,
+  secondHemistichWordsShuffled,
+  todayVerse,
+} from '@/utils/create-poem-variables'
 import {
   Box,
   Button,
@@ -28,10 +28,10 @@ import Countdown from 'react-countdown'
 
 const midnight: Date = startOfTomorrow()
 
-const firstBeytToShare: string = beytFirstPartWords
-  .map((word) => (word === beytFirstPartAnswer ? '💬' : word))
+const firstBeytToShare: string = firstHemistichWords
+  .map((word) => (word === firstHemistichAnswer ? '💬' : word))
   .join(' ')
-const secondBeytToShare: string = beytSecondPartWordsShuffled
+const secondBeytToShare: string = secondHemistichWordsShuffled
   .sort(() => Math.random() - 0.5)
   .join(' ↔️ ')
 
@@ -48,7 +48,7 @@ const WonGameModal = ({
     `اکسیر | بیت روز ${daysSinceInPersianLetter} ام \n
     «${firstBeytToShare}»
     «${secondBeytToShare}»\n
-    ${todayBeyt.poet}\n
+    ${todayVerse.poet}\n
     https://exss.ir/`
   )
   const { onClose } = useDisclosure()
@@ -100,13 +100,13 @@ const WonGameModal = ({
               fontFamily="'Vazir', sans-serif;"
               mb='4'
             >
-              {todayBeyt.m1}
+              {todayVerse.m1}
             </Heading>
             <Heading color='black' size='xl' fontFamily="'Vazir', sans-serif;">
-              {todayBeyt.m2}
+              {todayVerse.m2}
             </Heading>
             <Text color='black' fontSize='x-large' mt='4'>
-              {todayBeyt.poet}
+              {todayVerse.poet}
             </Text>
           </ModalBody>
           <ModalFooter>
@@ -118,7 +118,7 @@ const WonGameModal = ({
                 borderTopLeftRadius={0}
                 borderBottomLeftRadius={0}
               >
-                <Link href={todayBeyt.url} passHref target='_blank'>
+                <Link href={todayVerse.url} passHref target='_blank'>
                   متن کامل شعر
                 </Link>
               </Button>

@@ -1,7 +1,7 @@
-export const arrayEquals = (
+export const arrayEqual = (
   todayBeytSecondPartRandomized: string[],
   beytSecondPartRightOrder: string[]
-) => {
+): boolean => {
   return (
     Array.isArray(todayBeytSecondPartRandomized) &&
     Array.isArray(beytSecondPartRightOrder) &&

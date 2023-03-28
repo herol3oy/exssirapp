@@ -1,5 +1,5 @@
 import { poems } from '@/db/poems'
-import { Poem } from '@/model/Poem'
+import { Poem } from '@/model/poem'
 import { daysSince } from '@/utils/countDay'
 import { Text } from '@chakra-ui/react'
 

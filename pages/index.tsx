@@ -1,14 +1,14 @@
 import SortWords from '@/components/sortWords'
-import TextHemistich from '@/components/textHemistich'
+import TextHemistich from '@/components/hemistich'
 import WonGameModal from '@/components/wonGameModal'
 import { useIsBrowser } from '@/hooks/useIsBrowser'
 import {
-  beytFirstPartWords,
-  beytFirstPartWordsShuffled,
-  beytSecondPartWords,
-  beytSecondPartWordsShuffled,
-  todayBeyt,
-} from '@/utils/createPoemVariables'
+  firstHemistichWords,
+  firstHemistichWordsShuffled,
+  secondHemistichWords,
+  secondHemistichWordsShuffled,
+  todayVerse,
+} from '@/utils/create-poem-variables'
 import {
   Container,
   Flex,
@@ -30,31 +30,28 @@ import {
 } from 'react'
 import { motion } from 'framer-motion'
 import Keypad from '@/components/keypad'
-import PoemFirstPart from '@/components/poemFirstPart'
-import {
-  DisplayLogoContext,
-  ShouldDisplayLogo,
-} from 'context/displayLogoContext'
+import FirstHemistich from '@/components/firstHemistich'
+import DisplayLogo, { DisplayLogoContext } from 'context/displayLogoContext'
 
 const GAME_LEVEL: number[] = Array.from(Array(3).keys(), (n) => n + 1)
 
 const IndexPage = (): boolean | null | JSX.Element => {
   const [isGameFinished, isGameFinishedSet] = useState<boolean>(false)
   const [gameRound, gameRoundSet] = useState<number>(0)
-  const [isBeytFirstPartAnswerCorrect, isBeytFirstPartAnswerCorrectSet] =
+  const [isFirstHemistichAnswerCorrect, isFirstHemistichAnswerCorrectSet] =
     useState<boolean>(false)
   const [userInputAnswer, userInputAnswerSet] = useState<string | undefined>('')
 
   const { isBrowser } = useIsBrowser()
   const [displayLogo, displayLogoSet] =
-    useContext<ShouldDisplayLogo>(DisplayLogoContext)
+    useContext<DisplayLogo>(DisplayLogoContext)
 
   useEffect(() => {
-    isBeytFirstPartAnswerCorrectSet(false)
+    isFirstHemistichAnswerCorrectSet(false)
     gameRound >= GAME_LEVEL.length
       ? isGameFinishedSet(true)
       : isGameFinishedSet(false)
-  }, [gameRound, userInputAnswer, isBeytFirstPartAnswerCorrect])
+  }, [gameRound, userInputAnswer, isFirstHemistichAnswerCorrect])
 
   return !isBrowser ? null : (
     <Container
@@ -97,10 +94,10 @@ const IndexPage = (): boolean | null | JSX.Element => {
             {MainGame(
               gameRound,
               gameRoundSet,
-              isBeytFirstPartAnswerCorrect,
+              isFirstHemistichAnswerCorrect,
               userInputAnswer,
               userInputAnswerSet,
-              isBeytFirstPartAnswerCorrectSet
+              isFirstHemistichAnswerCorrectSet
             )}
           </Flex>
         </Animation>
@@ -152,10 +149,10 @@ const Animation = ({ children }: { children: ReactChild }): JSX.Element => (
 const MainGame = (
   gameRound: number,
   gameRoundSet: Dispatch<SetStateAction<number>>,
-  isBeytFirstPartAnswerCorrect: boolean,
+  isFirstHemistichAnswerCorrect: boolean,
   userInputAnswer: string | undefined,
   userInputAnswerSet: Dispatch<SetStateAction<string | undefined>>,
-  isBeytFirstPartAnswerCorrectSet: Dispatch<SetStateAction<boolean>>
+  isFirstHemistichAnswerCorrectSet: Dispatch<SetStateAction<boolean>>
 ): (JSX.Element | undefined)[] =>
   GAME_LEVEL.map((level: number, levelIndex: number) => {
     if (level === GAME_LEVEL[0] && gameRound === levelIndex) {
@@ -166,12 +163,12 @@ const MainGame = (
               gameLevel={GAME_LEVEL}
               gameRound={gameRound}
               gameRoundSet={gameRoundSet}
-              hemistich={beytFirstPartWords}
-              shuffleWords={beytFirstPartWordsShuffled}
+              hemistich={firstHemistichWords}
+              shuffleWords={firstHemistichWordsShuffled}
             />
-            <TextHemistich hemistich={beytSecondPartWords} />
+            <TextHemistich hemistich={secondHemistichWords} />
             <Text color='GrayText' fontSize={16} mb='8'>
-              {todayBeyt?.poet}
+              {todayVerse?.poet}
             </Text>
           </>
         </Animation>
@@ -181,16 +178,16 @@ const MainGame = (
       return (
         <Animation key={level.toString()}>
           <>
-            <TextHemistich hemistich={beytFirstPartWords} />
+            <TextHemistich hemistich={firstHemistichWords} />
             <SortWords
               gameLevel={GAME_LEVEL}
               gameRound={gameRound}
               gameRoundSet={gameRoundSet}
-              hemistich={beytSecondPartWords}
-              shuffleWords={beytSecondPartWordsShuffled}
+              hemistich={secondHemistichWords}
+              shuffleWords={secondHemistichWordsShuffled}
             />
             <Text color='GrayText' fontSize={16} mb='8'>
-              {todayBeyt?.poet}
+              {todayVerse?.poet}
             </Text>
           </>
         </Animation>
@@ -200,16 +197,18 @@ const MainGame = (
       return (
         <Animation key={level.toString()}>
           <>
-            <PoemFirstPart
-              isBeytFirstPartAnswerCorrect={isBeytFirstPartAnswerCorrect}
-              isBeytFirstPartAnswerCorrectSet={isBeytFirstPartAnswerCorrectSet}
+            <FirstHemistich
+              isFirstHemistichAnswerCorrect={isFirstHemistichAnswerCorrect}
+              isFirstHemistichAnswerCorrectSet={
+                isFirstHemistichAnswerCorrectSet
+              }
               userInputAnswer={userInputAnswer}
               userInputAnswerSet={userInputAnswerSet}
               gameRoundSet={gameRoundSet}
             />
-            <TextHemistich hemistich={beytSecondPartWords} />
+            <TextHemistich hemistich={secondHemistichWords} />
             <Text color='GrayText' fontSize={16} mb='8'>
-              {todayBeyt?.poet}
+              {todayVerse?.poet}
             </Text>
             <Container maxW='container.sm'>
               <Keypad userInputAnswerSet={userInputAnswerSet} />

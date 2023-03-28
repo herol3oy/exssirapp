@@ -1,45 +1,45 @@
 import {
   answerHintPlaceholder,
-  beytFirstPartAnswer,
-  beytFirstPartWords,
-} from '@/utils/createPoemVariables'
+  firstHemistichAnswer,
+  firstHemistichWords,
+} from '@/utils/create-poem-variables'
 import { Flex, FormControl, FormLabel, Input, Text } from '@chakra-ui/react'
-import { PoemFirstPartType } from 'model/poem-first-part'
+import { FirstHemistichType } from 'model/first-hemistich'
 import { ChangeEvent, useEffect } from 'react'
 
-const PoemFirstPart = ({
-  isBeytFirstPartAnswerCorrect,
-  isBeytFirstPartAnswerCorrectSet,
+const FirstHemistich = ({
+  isFirstHemistichAnswerCorrect,
+  isFirstHemistichAnswerCorrectSet,
   userInputAnswer,
   userInputAnswerSet,
   gameRoundSet,
-}: PoemFirstPartType): JSX.Element => {
+}: FirstHemistichType): JSX.Element => {
   useEffect(() => {
-    if (beytFirstPartAnswer === userInputAnswer) {
-      isBeytFirstPartAnswerCorrectSet(true)
+    if (firstHemistichAnswer === userInputAnswer) {
+      isFirstHemistichAnswerCorrectSet(true)
       gameRoundSet(3)
     } else {
-      isBeytFirstPartAnswerCorrectSet(false)
+      isFirstHemistichAnswerCorrectSet(false)
     }
-  }, [gameRoundSet, isBeytFirstPartAnswerCorrectSet, userInputAnswer])
+  }, [gameRoundSet, isFirstHemistichAnswerCorrectSet, userInputAnswer])
 
   return (
     <Flex alignItems={['flex-end', 'flex-start']}>
-      {beytFirstPartWords?.map((word: string) =>
-        word === beytFirstPartAnswer ? (
+      {firstHemistichWords?.map((word: string) =>
+        word === firstHemistichAnswer ? (
           <FormControl key={word}>
             <Input
               _placeholder={{ color: 'white' }}
               key={word}
               borderBottomColor={
-                isBeytFirstPartAnswerCorrect ? 'green.300' : ''
+                isFirstHemistichAnswerCorrect ? 'green.300' : ''
               }
               textAlign='center'
               fontWeight={900}
               variant='flushed'
               disabled
               placeholder={answerHintPlaceholder}
-              color={isBeytFirstPartAnswerCorrect ? 'green.300' : 'gray'}
+              color={isFirstHemistichAnswerCorrect ? 'green.300' : 'gray'}
               value={userInputAnswer}
               onChange={(e: ChangeEvent<HTMLInputElement>): void =>
                 userInputAnswerSet(e.target.value)
@@ -57,7 +57,7 @@ const PoemFirstPart = ({
               right='15px'
               transition='opacity 0.2s ease-in-out'
               fontSize='xs'
-              display={isBeytFirstPartAnswerCorrect ? 'none' : 'block'}
+              display={isFirstHemistichAnswerCorrect ? 'none' : 'block'}
               opacity={userInputAnswer ? 1 : 0}
               border='solid 1px orange'
               borderRadius='15px'
@@ -77,4 +77,4 @@ const PoemFirstPart = ({
   )
 }
 
-export default PoemFirstPart
+export default FirstHemistich
